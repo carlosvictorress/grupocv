@@ -1,0 +1,14 @@
+{
+  "name": "lp-grupo-cv",
+  "version": "1.0.0",
+  "description": "Landing page Grupo CV com servidor e envio de formulário",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "nodemailer": "^6.9.8"
+  }
+}
