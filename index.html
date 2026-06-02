@@ -2,11 +2,12 @@
 <html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor 360 - A Plataforma de Gestão Pública 4.0 e IA</title>
-    <meta name="description" content="Gestor 360: A plataforma mais completa para gestão pública, com RH, Ponto Biométrico, Frota, Almoxarifado, Patrimônio e Assinatura Digital.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Gestoor 360 - A Plataforma de Gestão Pública 4.0 e IA</title>
+    <meta name="description" content="Gestoor 360: A plataforma mais completa para gestão pública, com RH, Ponto Biométrico, Frota, Almoxarifado, Patrimônio e Assinatura Digital.">
     <link rel="canonical" href="https://www.grupocv.com.br/">
-    <meta property="og:title" content="Gestor 360 - O Futuro da Gestão Pública">
+    
+    <meta property="og:title" content="Gestoor 360 - O Futuro da Gestão Pública">
     <meta property="og:description" content="Transforme a gestão do seu município com processos digitais, ponto biométrico, dashboards inteligentes e automação total.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.grupocv.com.br/">
@@ -23,11 +24,11 @@
             theme: {
                 extend: {
                     colors: {
-                        'cv-dark-green': '#008B00',
-                        'cv-orange': '#FFA500',
-                        'cv-medium-green': '#00CD66',
-                        'cv-light-green': '#E0FEE0', 
-                        'cv-blue-accent': '#1E90FF',
+                        'cv-dark-green': '#145A2D',   
+                        'cv-orange': '#FFA500',       
+                        'cv-medium-green': '#008B00', 
+                        'cv-light-green': '#F4FDF7',  
+                        'cv-blue-accent': '#0098F3',
                     }
                 }
             }
@@ -35,17 +36,15 @@
     </script>
 
     <style>
-        /* Estilos de Animação e Personalização */
         .typed-cursor { color: #FFA500; animation: typedjsBlink 0.7s infinite; }
         @keyframes typedjsBlink { 50% { opacity: 0.0; } }
         
         .module-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-            border-bottom: 8px solid transparent;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .module-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
         }
         
         .cta-shine {
@@ -53,19 +52,19 @@
         }
         .cta-shine:before {
             content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
-            background: rgba(255, 255, 255, 0.3); transform: skewX(-20deg); transition: transform 0.5s;
+            background: rgba(255, 255, 255, 0.3); transform: skewX(-20deg); transition: transform 0.6s;
         }
         .cta-shine:hover:before {
             transform: skewX(-20deg) translateX(250%);
         }
 
         .bio-scan {
-            position: relative; border-radius: 1rem; overflow: hidden; height: 250px;
+            position: relative; border-radius: 0.75rem; overflow: hidden; height: 180px;
             background: #111; display: flex; align-items: center; justify-content: center;
             color: white; font-size: 1.5rem;
         }
         .bio-scan::after {
-            content: ''; position: absolute; width: 100%; height: 4px;
+            content: ''; position: absolute; width: 100%; height: 3px;
             background: linear-gradient(90deg, transparent, #00CD66, transparent);
             top: 0; animation: scanline 3s infinite linear;
         }
@@ -73,69 +72,37 @@
             0% { top: 0; } 50% { top: 100%; } 100% { top: 0; }
         }
 
-        /* Estilos para o Lightbox/Modal da Galeria */
+        .tab-btn[aria-selected="true"] {
+            background-color: #EBFEEF;
+            border-color: #008B00 !important;
+        }
+
         .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
+            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center;
         }
-        .lightbox-content {
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 900px;
-            max-height: 90%;
-            object-fit: contain;
-        }
-        .lightbox-caption {
-            margin: 15px auto 0;
-            display: block;
-            width: 80%;
-            max-width: 700px;
-            text-align: center;
-            color: #ccc;
-            padding: 10px 0;
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        .lightbox-close:hover, .lightbox-close:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
+        .lightbox-content { margin: auto; display: block; width: 80%; max-width: 900px; max-height: 90%; object-fit: contain; }
     </style>
 </head>
 
-<body class="bg-white text-gray-700 font-sans antialiased">
+<body class="bg-white text-gray-800 font-sans antialiased">
 
-    <header class="bg-white/70 backdrop-blur-md shadow-lg fixed w-full z-50">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-    <img src="logo.png" alt="Logo Gestor 360" class="h-10 w-auto max-w-full">
-</div>
-            <button id="menuButton" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-cv-dark-green text-3xl">
+    <header class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-gray-100">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center font-bold text-xl tracking-tight text-gray-900">
+                <span class="text-cv-dark-green">GESTOOR</span><span class="text-cv-orange">360</span>
+            </a>
+            
+            <button id="menuButton" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-cv-dark-green text-2xl">
                 <i class="bi bi-list"></i>
             </button>
             
-            <div id="navLinks" class="hidden md:flex space-x-8 items-center">
-                <a href="#nucleos" class="text-gray-600 font-medium hover:text-cv-dark-green transition duration-300">Ecossistema</a>
-                <a href="#diferenciais" class="text-gray-600 font-medium hover:text-cv-dark-green transition duration-300">Diferenciais</a>
-                <a href="#galeria" class="text-gray-600 font-medium hover:text-cv-dark-green transition duration-300">Telas</a>
-                <a href="#contato" class="bg-cv-orange text-white font-semibold px-5 py-2 rounded-full cta-shine md:block hidden">
+            <div id="navLinks" class="hidden md:flex space-x-6 items-center">
+                <a href="#nucleos" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Módulos</a>
+                <a href="#ponto" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Ponto Biométrico</a>
+                <a href="#provasocial" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Resultados</a>
+                <a href="#galeria" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Telas</a>
+                <a href="#contato" class="bg-cv-orange text-white text-sm font-bold px-5 py-2 rounded-lg cta-shine transition duration-300 shadow-md shadow-cv-orange/20">
                     Solicitar Demonstração
                 </a>
             </div>
@@ -143,417 +110,327 @@
     </header>
 
     <main>
-        <section id="vanta-hero" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden bg-gray-100">
-            <div class="relative z-10 p-6 max-w-5xl mx-auto">
-                 <p class="text-xl md:text-2xl font-semibold text-cv-orange mb-4" data-aos="fade-up">GESTÃO PÚBLICA DE ALTO IMPACTO</p>
-                <h1 class="text-4xl sm:text-5xl md:text-7xl font-extrabold text-gray-900 mb-6 leading-tight" data-aos="fade-up" data-aos-delay="100">
-                    O Fim da Burocracia. O Início da
-                    <span id="typed-hero" class="text-cv-medium-green"></span>
+        <section id="vanta-hero" class="relative max-h-[650px] min-h-[500px] h-screen flex items-center justify-center text-center overflow-hidden bg-gray-50 pt-12">
+            <div class="relative z-10 p-4 max-w-4xl mx-auto">
+                <p class="text-xs font-bold text-cv-orange tracking-widest uppercase mb-2" data-aos="fade-up">Tecnologia Pública de Alto Impacto</p>
+                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="100">
+                    O Fim da Burocracia.<br>O Início da <span id="typed-hero" class="text-cv-medium-green"></span>
                 </h1>
-                <p class="text-lg md:text-2xl text-gray-600 mb-12 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+                <p class="text-base md:text-lg text-gray-600 mb-8 max-w-2xl mx-auto font-medium" data-aos="fade-up" data-aos-delay="300">
                     Sua plataforma completa e inteligente: RH Biométrico, Assinatura Digital, Controle de Frota e Dashboards em Tempo Real.
                 </p>
                 <div data-aos="zoom-in" data-aos-delay="500">
-                    <a href="#contato" class="hidden md:inline-block bg-cv-dark-green text-white text-xl font-bold px-12 py-4 rounded-full hover:bg-cv-medium-green transition duration-300 shadow-2xl shadow-cv-dark-green/50 transform hover:scale-105 cta-shine">
+                    <a href="#contato" class="bg-cv-dark-green text-white text-base font-bold px-8 py-3.5 rounded-lg hover:bg-cv-medium-green transition duration-300 shadow-lg shadow-cv-dark-green/30 inline-block transform hover:scale-105 cta-shine">
                         Agendar Demonstração Gratuita
                     </a>
                 </div>
-                <div class="md:hidden mt-8" data-aos="zoom-in" data-aos-delay="600">
-                    <a href="#contato" class="bg-cv-dark-green text-white text-lg font-bold px-8 py-3 rounded-full hover:bg-cv-medium-green transition duration-300 shadow-2xl shadow-cv-dark-green/50">
-                        Agende Agora
-                    </a>
-                </div>
             </div>
         </section>
-        
-        <section id="ponto" class="py-24 bg-cv-light-green border-b-8 border-cv-medium-green">
-            <div class="container mx-auto px-6">
-                 <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-4" data-aos="fade-up">
-                    <span class="text-cv-blue-accent">Ponto Biométrico:</span> Zero Fraude, 100% de Conformidade.
-                </h2>
-                <p class="text-xl text-center text-gray-600 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    A frequência de servidores mais segura e auditável do mercado, combinando QR Code, Facial e GPS.
-                </p>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-                    
-                    <div class="lg:col-span-1 shadow-2xl rounded-xl" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="bio-scan">
-                            <i class="bi bi-camera-video-fill text-5xl text-cv-medium-green"></i>
-                            <p class="absolute bottom-4 text-sm text-gray-400">Escaneando Rosto e Localização...</p>
-                        </div>
-                         <div class="p-6 bg-white border-t-2 border-cv-dark-green">
-                            <h4 class="text-xl font-bold text-gray-900">Validação Biometria Facial</h4>
-                            <p class="text-gray-600 text-sm mt-1">Acaba com o "buddy punching". Identidade confirmada em menos de 1 segundo.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="lg:col-span-2 space-y-8" data-aos="fade-left" data-aos-delay="500">
-                        <div class="flex items-start bg-white p-6 rounded-xl shadow-2xl border-l-8 border-cv-orange transform hover:scale-[1.02] transition duration-300">
-                            <i class="bi bi-map-fill text-5xl text-cv-orange mr-4 mt-1"></i>
-                            <div>
-                                <h4 class="text-2xl font-bold text-gray-900 mb-1">Georreferência Auditável (GPS)</h4>
-                                <p class="text-gray-600">Cada registro é atrelado à localização exata. Perfeito para servidores externos ou lotações específicas (escolas, postos).</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start bg-white p-6 rounded-xl shadow-2xl border-l-8 border-cv-dark-green transform hover:scale-[1.02] transition duration-300">
-                            <i class="bi bi-file-earmark-spreadsheet-fill text-5xl text-cv-dark-green mr-4 mt-1"></i>
-                            <div>
-                                <h4 class="text-2xl font-bold text-gray-900 mb-1">Relatórios de Auditoria Instantâneos</h4>
-                                <p class="text-gray-600">Exporte a frequência completa em PDF ou Excel para órgãos de controle.</p>
-                            </div>
-                        </div>
-                    </div>
+        <section class="py-6 bg-white border-y border-gray-100">
+            <div class="container mx-auto px-6 text-center">
+                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
+                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Limeira (SP)</div>
+                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Pato Branco (PR)</div>
+                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Feira de Santana (BA)</div>
+                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Sorriso (MT)</div>
+                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Pinhais (PR)</div>
                 </div>
             </div>
         </section>
 
-        <section id="provasocial" class="py-24 bg-white">
+        <section id="nucleos" class="py-14 bg-gray-50">
             <div class="container mx-auto px-6">
-                 <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-4" data-aos="fade-up">
-                    Resultados Reais. Gestão Comprovada.
-                </h2>
-                <p class="text-xl text-center text-gray-600 mb-16 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Nossos municípios parceiros comprovam: o Gestor 360 transforma eficiência em economia.
-                </p>
-
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto text-center">
-                    
-                    <div class="p-6 bg-cv-light-green rounded-xl shadow-xl border-t-4 border-cv-dark-green" data-aos="flip-up" data-aos-delay="200">
-                        <i class="bi bi-shield-lock-fill text-6xl text-cv-dark-green mb-3"></i>
-                        <div class="text-5xl font-extrabold text-gray-900 mb-1 counter" data-target="99.9">99.9%</div>
-                        <p class="text-lg font-semibold text-gray-600">Precisão de Ponto (Biometria)</p>
-                    </div>
-
-                    <div class="p-6 bg-gray-100 rounded-xl shadow-xl border-t-4 border-cv-orange" data-aos="flip-up" data-aos-delay="300">
-                        <i class="bi bi-recycle text-6xl text-cv-orange mb-3"></i>
-                         <div class="text-5xl font-extrabold text-gray-900 mb-1 counter" data-target="85">85%</div>
-                        <p class="text-lg font-semibold text-gray-600">Redução de Papel</p>
-                    </div>
-                    
-                    <div class="p-6 bg-cv-light-green rounded-xl shadow-xl border-t-4 border-cv-blue-accent" data-aos="flip-up" data-aos-delay="400">
-                        <i class="bi bi-fuel-pump-fill text-6xl text-cv-blue-accent mb-3"></i>
-                         <div class="text-5xl font-extrabold text-gray-900 mb-1 counter" data-target="15">15%</div>
-                        <p class="text-lg font-semibold text-gray-600">Otimização de Frota (Média)</p>
-                    </div>
-                    
-                    <div class="p-6 bg-gray-100 rounded-xl shadow-xl border-t-4 border-cv-medium-green" data-aos="flip-up" data-aos-delay="500">
-                        <i class="bi bi-clock-fill text-6xl text-cv-medium-green mb-3"></i>
-                         <div class="text-5xl font-extrabold text-gray-900 mb-1 counter" data-target="72">72h</div>
-                        <p class="text-lg font-semibold text-gray-600">Tempo Economizado / Mês (RH)</p>
-                    </div>
-
-                </div>
-                
-                <div class="max-w-4xl mx-auto mt-20 p-8 bg-gray-100 rounded-xl shadow-lg border-l-8 border-cv-orange" data-aos="fade-up">
-                    <p class="text-xl italic text-gray-800 mb-4">
-                        "Desde a implantação do Gestor 360, nosso controle de frequência e a gestão de contratos foram simplificados. A transparência nos ajudou a economizar significativamente nos custos logísticos da frota."
-                    </p>
-                    <p class="font-bold text-lg text-cv-dark-green">- Secretário Municipal de Administração, Município Parceiro</p>
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <p class="text-xs font-bold text-cv-medium-green tracking-widest uppercase mb-1">Soluções Completas</p>
+                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">O Ecossistema da Gestão Pública Simplificada</h2>
                 </div>
 
-            </div>
-        </section>
-
-
-        <section id="nucleos" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-4" data-aos="fade-up">
-                    Ecossistema Integrado: 12 Módulos em 3 Núcleos
-                </h2>
-                <p class="text-xl text-center text-gray-600 mb-16 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    O Gestor 360 unifica todos os setores do seu município para eliminar a desorganização e a burocracia.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                    
-                    <div class="module-card bg-gray-50 p-8 rounded-xl shadow-lg border-cv-dark-green" data-aos="fade-up">
-                        <i class="bi bi-person-lines-fill text-5xl text-cv-dark-green mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Núcleo 1: Gestão de Pessoal</h3>
-                        <p class="text-gray-700 font-semibold mb-4">Foco na eficiência e conformidade do servidor público:</p>
-                        
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-dark-green mr-2"></i> RH Completo (Cadastro, QGEX)</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-dark-green mr-2"></i> Contratos Automáticos (RH)</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-dark-green mr-2"></i> GAM (Guia Médica)</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-dark-green mr-2"></i> Requerimentos Digitais</li>
-                        </ul>
-                         <a href="#contato" class="mt-6 block text-cv-dark-green font-bold hover:text-cv-orange transition duration-300">Saiba Mais &rarr;</a>
-                    </div>
-
-                    <div class="module-card bg-gray-50 p-8 rounded-xl shadow-lg border-cv-orange" data-aos="fade-up" data-aos-delay="200">
-                         <i class="bi bi-archive-fill text-5xl text-cv-orange mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Núcleo 2: Logística e Controle</h3>
-                        <p class="text-gray-700 font-semibold mb-4">Otimização de custos, ativos e eliminação do papel:</p>
-                        
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-orange mr-2"></i> Controle de Frota e Combustível</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-orange mr-2"></i> Patrimônio (Localização e Baixa)</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-orange mr-2"></i> Almoxarifado (Estoque e Requisição)</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-orange mr-2"></i> Protocolo Digital (Tramitação)</li>
-                        </ul>
-                         <a href="#contato" class="mt-6 block text-cv-orange font-bold hover:text-cv-dark-green transition duration-300">Saiba Mais &rarr;</a>
-                    </div>
-                    
-                    <div class="module-card bg-gray-50 p-8 rounded-xl shadow-lg border-cv-blue-accent" data-aos="fade-up" data-aos-delay="400">
-                        <i class="bi bi-mortarboard-fill text-5xl text-cv-blue-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Núcleo 3: Educação e Fiscalização</h3>
-                        <p class="text-gray-700 font-semibold mb-4">Conformidade e agilidade nos serviços essenciais:</p>
-                        
-                        <ul class="space-y-3 text-gray-600">
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-blue-accent mr-2"></i> Merenda Escolar e Agricultura Familiar</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-blue-accent mr-2"></i> Transporte Escolar e CAEE</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-blue-accent mr-2"></i> Fiscal de Contratos (Auditoria)</li>
-                            <li class="flex items-center"><i class="bi bi-check-circle-fill text-cv-blue-accent mr-2"></i> Assinatura Digital (Legalização)</li>
-                        </ul>
-                         <a href="#contato" class="mt-6 block text-cv-blue-accent font-bold hover:text-cv-dark-green transition duration-300">Saiba Mais &rarr;</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="galeria" class="py-24 bg-gray-100">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-4" data-aos="fade-up">
-                    Telas Reais do Sistema em Ação
-                </h2>
-                 <p class="text-xl text-center text-gray-600 mb-16 max-w-4xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Clique nas miniaturas para ver a alta resolução da nossa interface limpa e intuitiva.
-                </p>
-
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 max-w-7xl mx-auto">
-                    
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="100">
-                        <img src="DASHBOARD VISAO GERAL .png" alt="Dashboard de Visão Geral" class="gallery-thumb w-full h-auto rounded-md" data-caption="Dashboard de Visão Geral: KPIs, Média Salarial e Consumo de Combustível">
-                        <p class="text-sm text-center mt-2 text-gray-600">Dashboard</p>
-                    </div>
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="200">
-                        <img src="CONTROLE DE PONTO .png" alt="Frequência de Ponto" class="gallery-thumb w-full h-auto rounded-md" data-caption="Módulo de Frequência de Ponto: Auditoria, Filtros e Exportação">
-                         <p class="text-sm text-center mt-2 text-gray-600">Ponto Eletrônico</p>
-                    </div>
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="300">
-                        <img src="ADICIONAR NOVO SERVIDOR .png" alt="Cadastro de Servidor" class="gallery-thumb w-full h-auto rounded-md" data-caption="Formulário de Cadastro de Novo Servidor (Dados Pessoais, Contratuais, Bancários)">
-                        <p class="text-sm text-center mt-2 text-gray-600">Cadastro RH</p>
-                    </div>
-                     <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="400">
-                        <img src="GERENCIAMENTO E CADASTRO DE VEICULOS .png" alt="Gerenciamento de Veículos" class="gallery-thumb w-full h-auto rounded-md" data-caption="Gerenciamento de Veículos e Cadastro de Frota">
-                         <p class="text-sm text-center mt-2 text-gray-600">Gestão de Frota</p>
-                    </div>
-                    
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="500">
-                        <img src="CONTROLE PATRIMONIAL .png" alt="Controle Patrimonial" class="gallery-thumb w-full h-auto rounded-md" data-caption="Controle de Itens Patrimoniais (Busca por N°, Localização e Status)">
-                        <p class="text-sm text-center mt-2 text-gray-600">Patrimônio</p>
-                    </div>
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="600">
-                        <img src="GERAÇÃO DE CONTRATOS AUTOMATICOS .png" alt="Geração de Contratos" class="gallery-thumb w-full h-auto rounded-md" data-caption="Módulo de Geração de Contratos Administrativos (Pesquisa por CPF e Geração Rápida)">
-                         <p class="text-sm text-center mt-2 text-gray-600">Contratos</p>
-                    </div>
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="700">
-                        <img src="GAM - GUIA DE ATENDIMENTOS MEDICOS .png" alt="Guia Médica (GAM)" class="gallery-thumb w-full h-auto rounded-md" data-caption="Guia de Atendimento Médico (GAM): Emissão e Rastreamento">
-                        <p class="text-sm text-center mt-2 text-gray-600">Guia Médica (GAM)</p>
-                    </div>
-                    <div class="p-2 border-4 border-white shadow-lg rounded-lg cursor-pointer transform hover:scale-[1.03] transition duration-300" data-aos="zoom-in" data-aos-delay="800">
-                        <img src="CADASTRO DE MOTORISTAS.png" alt="Cadastro de Motoristas" class="gallery-thumb w-full h-auto rounded-md" data-caption="Cadastro de Motoristas (Informações Profissionais, Veículo e Rota)">
-                         <p class="text-sm text-center mt-2 text-gray-600">Motoristas / Rota</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="diferenciais" class="py-24 bg-gray-50">
-            <div class="container mx-auto px-6">
-                 <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-16" data-aos="fade-up">
-                    Por que Escolher o Gestor 360?
-                </h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    
-                    <div class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-cv-blue-accent transform hover:translate-y-[-10px] transition duration-500" data-aos="zoom-in">
-                        <i class="bi bi-cloud-arrow-up-fill text-6xl text-cv-blue-accent mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">100% em Nuvem e Seguro</h3>
-                        <p class="text-gray-600">Acesse de qualquer lugar, com backup automático, segurança de dados de nível corporativo e sem custos de infraestrutura local.</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-cv-medium-green transform hover:translate-y-[-10px] transition duration-500" data-aos="zoom-in" data-aos-delay="200">
-                        <i class="bi bi-headset-fill text-6xl text-cv-medium-green mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Suporte Estratégico</h3>
-                        <p class="text-gray-600">Nossa equipe de especialistas em gestão pública garante a implantação rápida e o suporte humanizado no dia a dia do seu município.</p>
-                    </div>
-
-                    <div class="bg-white p-8 rounded-xl shadow-2xl border-t-8 border-cv-orange transform hover:translate-y-[-10px] transition duration-500" data-aos="zoom-in" data-aos-delay="400">
-                        <i class="bi bi-file-earmark-lock-fill text-6xl text-cv-orange mb-4"></i>
-                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Assinatura Digital Própria</h3>
-                        <p class="text-gray-600">Validade jurídica para todos os seus documentos. Agilize contratos, requerimentos e protocolos eliminando pilhas de papel.</p>
-                    </div>
-                    
-                </div>
-        </section>
-
-
-        <section id="dashboards" class="py-24 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div data-aos="fade-right">
-                        <p class="text-xl font-semibold text-cv-orange mb-3">VISÃO GERENCIAL</p>
-                        <h2 class="text-4xl font-extrabold text-gray-900 mb-6">
-                            Inteligência em Tempo Real para Decisões de Alto Impacto.
-                        </h2>
-                        <p class="text-gray-700 text-lg mb-8">
-                            Não espere o fim do mês para analisar dados. Com o Gestor 360, você tem o Dashboard completo que filtra por Secretaria, mostrando KPIs de RH, Média Salarial e Custos de Combustível.
-                        </p>
-                        <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
-                            <li>Reduza custos identificando anomalias no consumo de Frota.</li>
-                            <li>Monitore a eficiência da gestão de pessoal com KPIs claros.</li>
-                            <li>Gere relatórios de prestação de contas em segundos.</li>
-                        </ul>
-                    </div>
-                    <div class="shadow-2xl rounded-xl overflow-hidden border-4 border-gray-200" data-aos="zoom-in">
-                        <img src="DASHBOARD VISAO GERAL .png" alt="Dashboard de Visão Geral com Total de Servidores, Média Salarial e Consumo de Combustível" class="w-full object-cover">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section id="contato" class="py-24 bg-cv-dark-green">
-            <div class="container mx-auto px-6">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h2 class="text-4xl font-extrabold text-white mb-4" data-aos="fade-up">
-                        O Primeiro Passo para uma Gestão 100% Digital.
-                    </h2>
-                    <p class="text-xl text-gray-200 mb-10" data-aos="fade-up" data-aos-delay="100">
-                        Agende sua demonstração. Preencha os detalhes para que nossa equipe prepare uma apresentação focada nas suas necessidades.
-                    </p>
-                </div>
-
-                <form id="contactForm" class="max-w-4xl mx-auto bg-white p-8 md:p-10 rounded-2xl shadow-2xl border border-gray-200" data-aos="fade-up" data-aos-delay="200">
-                    
-                    <div id="formSuccess" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-6 text-center" role="alert">
-                        <strong class="font-bold">Mensagem enviada com sucesso!</strong>
-                        <span class="block sm:inline">Em breve entraremos em contato.</span>
-                    </div>
-                    <div id="formError" class="hidden bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6 text-center" role="alert">
-                        <strong class="font-bold">Falha no envio.</strong>
-                        <span class="block sm:inline">Tente novamente mais tarde.</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        
-                        <div class="space-y-6">
-                            <h3 class="text-xl font-bold text-cv-dark-green border-b pb-2">Informações Pessoais</h3>
-                            <div>
-                                <label for="nome" class="block text-sm font-medium text-gray-700 mb-2">Seu Nome*</label>
-                                <input type="text" id="nome" name="nome" required autocomplete="name" class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Seu E-mail*</label>
-                                <input type="email" id="email" name="email" required autocomplete="email" class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                            </div>
-                            <div>
-                                <label for="telefone" class="block text-sm font-medium text-gray-700 mb-2">Telefone / WhatsApp*</label>
-                                <input type="tel" id="telefone" name="telefone" required inputmode="tel" autocomplete="tel" pattern="[0-9\s()+-]{10,16}" class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                            </div>
-                        </div>
-
-                        <div class="space-y-6">
-                             <h3 class="text-xl font-bold text-cv-dark-green border-b pb-2">Detalhes do Município</h3>
-                            <div>
-                                <label for="municipio" class="block text-sm font-medium text-gray-700 mb-2">Nome do Município*</label>
-                                <input type="text" id="municipio" name="municipio" required autocomplete="organization" class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                            </div>
-                             <div>
-                                <label for="cargo" class="block text-sm font-medium text-gray-700 mb-2">Seu Cargo*</label>
-                                <select id="cargo" name="cargo" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                                    <option value="">Selecione seu cargo</option>
-                                    <option value="Prefeito">Prefeito(a)</option>
-                                    <option value="Secretario">Secretário(a)</option>
-                                    <option value="Diretor">Diretor(a) / Coordenador(a)</option>
-                                    <option value="Tecnico">Técnico(a) / Servidor(a)</option>
-                                    <option value="Outro">Outro</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="populacao" class="block text-sm font-medium text-gray-700 mb-2">População Estimada (Habitantes)</label>
-                                <input type="number" id="populacao" name="populacao" inputmode="numeric" placeholder="Ex: 25000" class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                            </div>
-                        </div>
-                        
-                        <div class="md:col-span-1 space-y-6"> 
-                             <h3 class="text-xl font-bold text-cv-dark-green border-b pb-2">Interesses Principais</h3>
-                            <div class="md:col-span-2">
-                                <label for="prioridade" class="block text-sm font-medium text-gray-700 mb-2">Área de Maior Prioridade</label>
-                                <select id="prioridade" name="prioridade" required class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange">
-                                    <option value="">Selecione um módulo</option>
-                                    <option value="Ponto Biometrico">Ponto Biométrico (Facial/GPS)</option>
-                                    <option value="RH">RH Completo / QGEX / Contratos</option>
-                                    <option value="Frota">Controle de Frota e Combustível</option>
-                                    <option value="Patrimonio">Patrimônio / Almoxarifado</option>
-                                    <option value="Outros">Educação / Fiscal / Outros</option>
-                                </select>
-                            </div>
-                            <div class="md:col-span-2">
-                                <label for="mensagem" class="block text-sm font-medium text-gray-700 mb-2">Dúvidas Específicas (Opcional)</label>
-                                <textarea id="mensagem" name="mensagem" rows="4" placeholder="Ex: Precisamos de um sistema que ajude a reduzir custos com combustível..."
-                                      class="w-full px-4 py-3 bg-white border border-gray-300 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange focus:border-cv-orange"></textarea>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="mt-8 md:col-span-3">
-                        <button type="submit"
-                                class="w-full bg-cv-orange text-white text-lg font-bold px-8 py-4 rounded-lg hover:bg-opacity-90 transition duration-300 shadow-lg shadow-cv-orange/30 transform hover:scale-105 cta-shine">
-                            Quero minha demonstração agora!
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-5xl mx-auto">
+                    <div class="lg:col-span-5 space-y-3 flex flex-col justify-start">
+                        <button onclick="switchTab(1)" id="tab-btn-1" aria-selected="true" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
+                            <h3 class="font-bold text-base text-cv-dark-green mb-0.5">1. Gestão de Pessoal e RH</h3>
+                            <p class="text-xs text-gray-500">Controle de servidores, prontuários e portarias automáticas.</p>
+                        </button>
+                        <button onclick="switchTab(2)" id="tab-btn-2" aria-selected="false" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
+                            <h3 class="font-bold text-base text-gray-900 mb-0.5">2. Logística e Frota</h3>
+                            <p class="text-xs text-gray-500">Controle rígido de combustível, rotas e consumo.</p>
+                        </button>
+                        <button onclick="switchTab(3)" id="tab-btn-3" aria-selected="false" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
+                            <h3 class="font-bold text-base text-gray-900 mb-0.5">3. Suprimentos e Patrimônio</h3>
+                            <p class="text-xs text-gray-500">Almoxarifado central, requisições e tombamentos.</p>
+                        </button>
+                        <button onclick="switchTab(4)" id="tab-btn-4" aria-selected="false" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
+                            <h3 class="font-bold text-base text-gray-900 mb-0.5">4. Logística de Educação</h3>
+                            <p class="text-xs text-gray-500">Rotas de transporte escolar, merenda e Agricultura Familiar.</p>
                         </button>
                     </div>
+
+                    <div class="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-center">
+                        
+                        <div id="tab-content-1" class="tab-content space-y-4">
+                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-people-fill text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Núcleo de Pessoal Inteligente</h4></div>
+                            <p class="text-sm text-gray-600">Centralize a estrutura funcional e reduza o tempo de emissão de folhas e portarias:</p>
+                            <ul class="space-y-2 text-sm font-medium text-gray-700">
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Geração automática de portarias e admissões.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Prontuário digital individualizado em nuvem.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Emissão automatizada de Guias Médicas (GAM).</li>
+                            </ul>
+                        </div>
+
+                        <div id="tab-content-2" class="tab-content hidden space-y-4">
+                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-truck text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Controle de Frotas e Abastecimento</h4></div>
+                            <p class="text-sm text-gray-600">Monitore os ativos móveis e acabe com desperdícios de combustível:</p>
+                            <ul class="space-y-2 text-sm font-medium text-gray-700">
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Liberação e limites de cotas por secretaria.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Rastreabilidade eletrônica de rotas de veículos.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Alertas de manutenções preventivas integradas.</li>
+                            </ul>
+                        </div>
+
+                        <div id="tab-content-3" class="tab-content hidden space-y-4">
+                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-box-seam-fill text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Almoxarifado e Controle Patrimonial</h4></div>
+                            <p class="text-sm text-gray-600">Controle exato do fluxo de insumos e do tombamento de bens patrimoniais:</p>
+                            <ul class="space-y-2 text-sm font-medium text-gray-700">
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Requisições de materiais e baixa de estoque eletrônicos.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Alerta automático de estoque mínimo crítico.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Inventário físico por localização via QR Code.</li>
+                            </ul>
+                        </div>
+
+                        <div id="tab-content-4" class="tab-content hidden space-y-4">
+                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-mortarboard-fill text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Gestão de Educação e Alimentação</h4></div>
+                            <p class="text-sm text-gray-600">Planejamento e auditoria transparente para a Secretaria de Educação:</p>
+                            <ul class="space-y-2 text-sm font-medium text-gray-700">
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Otimização e roteiros do Transporte Escolar.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Gestão de cardápios e controle da Merenda Escolar.</li>
+                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Recibos de repasse da Agricultura Familiar para a <b>Escola</b>.</li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="ponto" class="py-14 bg-cv-light-green border-b-4 border-cv-medium-green">
+            <div class="container mx-auto px-6">
+                 <h2 class="text-2xl md:text-3xl font-extrabold text-center text-gray-900 mb-2" data-aos="fade-up">
+                    Ponto Biométrico: Zero Fraude, 100% Auditável.
+                </h2>
+                <p class="text-sm md:text-base text-center text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Frequência de servidores segura combinando Reconhecimento Facial e GPS.
+                </p>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-center">
+                    <div class="lg:col-span-1 shadow-md rounded-xl bg-white overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
+                        <div class="bio-scan" style="height: 160px;">
+                            <i class="bi bi-camera-video-fill text-4xl text-cv-medium-green"></i>
+                        </div>
+                         <div class="p-4 text-center">
+                            <h4 class="text-base font-bold text-gray-900">Biometria Facial</h4>
+                            <p class="text-gray-500 text-xs mt-1">Identidade confirmada em menos de 1 segundo.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-2 space-y-4" data-aos="fade-left" data-aos-delay="500">
+                        <div class="flex items-start bg-white p-4 rounded-xl shadow-sm border-l-4 border-cv-orange">
+                            <i class="bi bi-map-fill text-2xl text-cv-orange mr-3 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-base font-bold text-gray-900 mb-0.5">Georreferência Auditável (GPS)</h4>
+                                <p class="text-gray-600 text-xs">Vincula obrigatoriamente a batida de ponto às coordenadas geográficas da lotação do servidor.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start bg-white p-4 rounded-xl shadow-sm border-l-4 border-cv-dark-green">
+                            <i class="bi bi-file-earmark-spreadsheet-fill text-2xl text-cv-dark-green mr-3 mt-0.5"></i>
+                            <div>
+                                <h4 class="text-base font-bold text-gray-900 mb-0.5">Relatórios de Frequência Instantâneos</h4>
+                                <p class="text-gray-600 text-xs">Exporte espelhos de ponto e planilhas de auditoria prontas para envio imediato aos órgãos de controle.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="provasocial" class="py-14 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto text-center">
+                    <div class="p-4 bg-cv-light-green rounded-xl border-t-4 border-cv-dark-green shadow-sm">
+                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="99.9">99.9%</div>
+                        <p class="text-xs font-semibold text-gray-500">Precisão de Ponto</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border-t-4 border-cv-orange shadow-sm">
+                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="85">85%</div>
+                        <p class="text-xs font-semibold text-gray-500">Redução de Papel</p>
+                    </div>
+                    <div class="p-4 bg-cv-light-green rounded-xl border-t-4 border-cv-blue-accent shadow-sm">
+                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="15">15%</div>
+                        <p class="text-xs font-semibold text-gray-500">Otimização de Frota</p>
+                    </div>
+                    <div class="p-4 bg-gray-50 rounded-xl border-t-4 border-cv-medium-green shadow-sm">
+                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="72">72h</div>
+                        <p class="text-xs font-semibold text-gray-500">Tempo Salvo / Mês</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="dashboards" class="py-14 bg-gray-50">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+                    <div data-aos="fade-right">
+                        <p class="text-xs font-bold text-cv-orange tracking-widest uppercase mb-1">Visão Gerencial Unificada</p>
+                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">Painéis em Tempo Real para Decisões Ágeis</h2>
+                        <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                            Monitore indicadores essenciais por secretaria sem planilhas soltas. No painel do Gestoor 360, você acompanha a folha operacional, médias salariais e consumo logístico de combustível de forma unificada.
+                        </p>
+                    </div>
+                    <div class="shadow-xl rounded-xl overflow-hidden border border-gray-200 cursor-pointer" data-aos="zoom-in">
+                        <img src="DASHBOARD VISAO GERAL .png" alt="Dashboard do Sistema" class="gallery-thumb w-full object-cover" data-caption="Dashboard Gerencial Central: Controle de Servidores e Combustível">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="galeria" class="py-14 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center max-w-xl mx-auto mb-10">
+                    <h2 class="text-2xl font-extrabold text-gray-900">Interface Limpa e Intuitiva</h2>
+                    <p class="text-xs text-gray-400 mt-1">Clique para inspecionar os recursos operacionais em alta resolução.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
+                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                        <img src="CONTROLE DE PONTO .png" alt="Frequência" class="gallery-thumb w-full rounded-md" data-caption="Módulo de Frequência de Ponto: Filtros e Auditoria Georreferenciada">
+                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Ponto Eletrônico</p>
+                    </div>
+                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                        <img src="ADICIONAR NOVO SERVIDOR .png" alt="RH" class="gallery-thumb w-full rounded-md" data-caption="Cadastro de Servidor: Informações Funcionais, Dados Bancários e Lotação">
+                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Cadastro RH</p>
+                    </div>
+                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                        <img src="GERENCIAMENTO E CADASTRO DE VEICULOS .png" alt="Frota" class="gallery-thumb w-full rounded-md" data-caption="Controle de Frota: Cadastro de Veículos Oficiais e Rastreamento">
+                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Gestão de Frota</p>
+                    </div>
+                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
+                        <img src="CONTROLE PATRIMONIAL .png" alt="Patrimônio" class="gallery-thumb w-full rounded-md" data-caption="Controle Patrimonial: Localização de Ativos, Código de Tombamento e Baixas">
+                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Patrimônio</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="py-14 bg-cv-dark-green text-white">
+            <div class="container mx-auto px-6">
+                <div class="max-w-xl mx-auto text-center mb-8">
+                    <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Agende uma Apresentação Técnica</h2>
+                    <p class="text-sm text-gray-200">Prepare seu município para a transformação digital em poucos passos.</p>
+                </div>
+
+                <form id="contactForm" class="max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-xl text-gray-900">
+                    <div id="formSuccess" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-2.5 rounded-lg mb-4 text-center text-sm font-semibold">
+                        Demonstração solicitada com sucesso! Breve entraremos em contato.
+                    </div>
+                    <div id="formError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-2.5 rounded-lg mb-4 text-center text-sm font-semibold">
+                        Ocorreu um erro ao processar. Por favor, tente novamente.
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Seu Nome*</label>
+                            <input type="text" id="nome" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">E-mail Institucional*</label>
+                            <input type="email" id="email" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Telefone / WhatsApp*</label>
+                            <input type="tel" id="telefone" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Nome do Município*</label>
+                            <input type="text" id="municipio" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Seu Cargo*</label>
+                            <select id="cargo" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                                <option value="">Selecione</option>
+                                <option value="Prefeito">Prefeito(a)</option>
+                                <option value="Secretario">Secretário(a)</option>
+                                <option value="Diretor">Diretor(a)</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-700 mb-1">População Estimada</label>
+                            <input type="number" id="populacao" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Área de Maior Prioridade*</label>
+                            <select id="prioridade" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
+                                <option value="">Selecione um módulo</option>
+                                <option value="Ponto Biometrico">Ponto Biométrico (Facial/GPS)</option>
+                                <option value="RH">RH Completo / Geração de Contratos</option>
+                                <option value="Frota">Controle de Frota e Combustível</option>
+                                <option value="Patrimonio">Patrimônio / Almoxarifado</option>
+                            </select>
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs font-bold text-gray-700 mb-1">Demandas Específicas</label>
+                            <textarea id="mensagem" rows="2" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm"></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full mt-4 bg-cv-orange text-white text-sm font-bold py-3 rounded-lg hover:bg-opacity-95 transition duration-300 cta-shine">
+                        Solicitar Demonstração Técnica Agora
+                    </button>
                 </form>
             </div>
         </section>
     </main>
 
     <div id="myLightbox" class="lightbox">
-        <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightboxImage">
-        <div id="lightboxCaption" class="lightbox-caption"></div>
+        <span class="lightbox-close text-white absolute top-6 right-10 text-4xl font-bold cursor-pointer">&times;</span>
+        <img class="lightbox-content rounded-xl" id="lightboxImage">
+        <div id="lightboxCaption" class="text-center text-gray-300 mt-4 font-medium text-sm"></div>
     </div>
 
-
-    <footer class="bg-gray-800 text-gray-400 py-10">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-lg font-bold text-white mb-2">Grupo CV Empreendimentos</p>
-            <p>&copy; 2025. Todos os direitos reservados. Software para Automação da Gestão Pública.</p>
+    <footer class="bg-gray-900 text-gray-500 py-8 border-t border-gray-800 text-xs">
+        <div class="container mx-auto px-6 text-center space-y-2">
+            <p class="text-sm font-bold text-white">Grupo CV Empreendimentos</p>
+            <p>&copy; 2025. Todos os direitos reservados. Automação Inteligente de Processos Públicos.</p>
         </div>
     </footer>
 
-    <button id="chatFab" class="fixed bottom-6 right-6 bg-cv-dark-green text-white w-14 h-14 rounded-full shadow-lg flex items-center justify-center hover:bg-cv-medium-green focus:outline-none">
-        <i class="bi bi-chat-dots text-2xl"></i>
+    <button id="chatFab" class="fixed bottom-6 right-6 bg-cv-dark-green text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-cv-medium-green focus:outline-none z-50">
+        <i class="bi bi-chat-dots text-xl"></i>
     </button>
 
-    <div id="chatWidget" class="fixed bottom-24 right-6 w-80 md:w-96 bg-white border border-gray-200 rounded-xl shadow-2xl hidden">
-        <div class="flex items-center justify-between px-4 py-3 border-b">
-            <div class="font-bold text-gray-900">Chat - Gestor360</div>
-            <button id="chatClose" class="text-gray-500"><i class="bi bi-x-lg"></i></button>
+    <div id="chatWidget" class="fixed bottom-20 right-6 w-72 md:w-80 bg-white border border-gray-200 rounded-xl shadow-2xl hidden z-50 overflow-hidden text-xs">
+        <div class="flex items-center justify-between px-4 py-2.5 bg-cv-dark-green text-white">
+            <div class="font-bold">Atendimento - Gestoor 360</div>
+            <button id="chatClose" class="text-white"><i class="bi bi-x-lg"></i></button>
         </div>
-        <div id="chatBody" class="p-4 space-y-3 max-h-80 overflow-y-auto">
-            <div id="prechat">
-                <div class="mb-3">
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="chatName">Seu nome</label>
-                    <input id="chatName" class="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="Ex.: Maria" />
+        <div id="chatBody" class="p-3 space-y-2.5 max-h-64 overflow-y-auto bg-gray-50">
+            <div id="prechat" class="space-y-2 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-0.5" for="chatName">Seu nome</label>
+                    <input id="chatName" class="w-full px-2 py-1.5 border border-gray-200 rounded-md" placeholder="Nome" />
                 </div>
-                <div class="mb-3">
-                    <label class="block text-sm font-medium text-gray-700 mb-1" for="chatEmail">Seu e-mail</label>
-                    <input id="chatEmail" type="email" class="w-full px-3 py-2 border border-gray-300 rounded-lg" placeholder="voce@exemplo.com" />
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 mb-0.5" for="chatEmail">Seu e-mail</label>
+                    <input id="chatEmail" type="email" class="w-full px-2 py-1.5 border border-gray-200 rounded-md" placeholder="voce@municipio.gov.br" />
                 </div>
-                <button id="startChat" class="w-full bg-cv-orange text-white px-4 py-2 rounded-lg">Iniciar</button>
+                <button id="startChat" class="w-full bg-cv-orange text-white py-1.5 rounded-md font-bold">Iniciar Conversa</button>
             </div>
             <div id="chatMessages" class="hidden space-y-2"></div>
         </div>
-        <div id="chatInputArea" class="border-t p-3 hidden">
+        <div id="chatInputArea" class="border-t p-2 bg-white hidden">
             <div class="flex space-x-2">
-                <input id="chatInput" class="flex-1 px-3 py-2 border border-gray-300 rounded-lg" placeholder="Escreva sua mensagem..." />
-                <button id="chatSend" class="bg-cv-orange text-white px-4 py-2 rounded-lg">Enviar</button>
+                <input id="chatInput" class="flex-1 px-2 py-1.5 bg-gray-50 border border-gray-200 rounded-md focus:outline-none" placeholder="Escreva..." />
+                <button id="chatSend" class="bg-cv-orange text-white px-3 py-1.5 rounded-md font-bold">Enviar</button>
             </div>
         </div>
     </div>
@@ -561,157 +438,122 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
     <script>
-        // --- Função de Contador Animado (CORRIGIDA) ---
+        function switchTab(idx) {
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.setAttribute('aria-selected', 'false');
+                btn.querySelector('h3').classList.replace('text-cv-dark-green', 'text-gray-900');
+                btn.classList.remove('bg-emerald-50/50', 'border-cv-medium-green');
+            });
+            
+            const activeBtn = document.getElementById(`tab-btn-${idx}`);
+            activeBtn.setAttribute('aria-selected', 'true');
+            activeBtn.querySelector('h3').classList.replace('text-gray-900', 'text-cv-dark-green');
+            activeBtn.classList.add('bg-emerald-50/50', 'border-cv-medium-green');
+
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
+            document.getElementById(`tab-content-${idx}`).classList.remove('hidden');
+        }
+
         function animateCounters() {
-            const counters = document.querySelectorAll('.counter');
-            const speed = 200; 
-
-            counters.forEach(counter => {
+            document.querySelectorAll('.counter').forEach(counter => {
+                const target = +counter.getAttribute('data-target');
                 const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const countText = counter.innerText;
-                    
-                    const currentValue = +countText.replace(/[^0-9.]/g, ''); 
-                    
-                    const increment = target / speed;
-
+                    const currentValue = +counter.innerText.replace(/[^0-9.]/g, '');
+                    const increment = target / 100;
                     if (currentValue < target) {
                         let newValue = currentValue + increment;
                         if (newValue > target) newValue = target;
-                        
-                        // Formatação: Arredondamento para evitar bugs de float
-                        let displayValue = (target === 99.9 || target === 85 || target === 15) ? newValue.toFixed(1) : Math.ceil(newValue);
-
-                        let formattedValue = displayValue;
-                        if (counter.innerText.includes('%')) formattedValue += '%';
-                        else if (counter.innerText.includes('h')) formattedValue += 'h';
-                        
-                        counter.innerText = formattedValue;
-                        setTimeout(updateCount, 1);
+                        let displayValue = (target === 99.9) ? newValue.toFixed(1) : Math.ceil(newValue);
+                        counter.innerText = counter.innerText.includes('%') ? displayValue + '%' : (counter.innerText.includes('h') ? displayValue + 'h' : displayValue);
+                        setTimeout(updateCount, 15);
                     } else {
-                        // Garante o valor final exato
-                        let finalValue = target;
-                        if (target === 99.9 || target === 85 || target === 15) finalValue = target.toFixed(1);
-
-                        if (counter.innerText.includes('%')) finalValue += '%';
-                        else if (counter.innerText.includes('h')) finalValue += 'h';
-                        
-                        counter.innerText = finalValue;
+                        counter.innerText = counter.innerText.includes('%') ? target + '%' : (counter.innerText.includes('h') ? target + 'h' : target);
                     }
                 };
                 updateCount();
             });
         }
 
-
         document.addEventListener('DOMContentLoaded', function() {
-            
-            AOS.init({ duration: 800, once: true, offset: 100, });
+            AOS.init({ duration: 600, once: true });
 
             if (window.VANTA) {
                 VANTA.GLOBE({
-                    el: "#vanta-hero", mouseControls: true, touchControls: true, gyroControls: false,
+                    el: "#vanta-hero", mouseControls: true, touchControls: true,
                     minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
-                    color: 0x008B00, color2: 0x00CD66, backgroundColor: 0xf3f4f6, size: 1.2
+                    color: 0x008B00, color2: 0x145A2D, backgroundColor: 0xf9fafb, size: 1.1
                 });
             }
 
             new Typed('#typed-hero', {
-                strings: ['Gestão Pública Digital.', 'Automação de Processos.', 'Controle Total de Custos.', 'Plataforma Unificada.'],
-                typeSpeed: 50, backSpeed: 30, backDelay: 1500, loop: true, smartBackspace: true,
+                strings: ['Gestão Eficiente.', 'Administração Digital.', 'Transparência Real.'],
+                typeSpeed: 50, backSpeed: 30, backDelay: 1500, loop: true
             });
 
-            // --- Observador para Contador (Ativa ao aparecer) ---
             const observer = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateCounters();
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.5 }); 
+                if (entries[0].isIntersecting) { animateCounters(); observer.disconnect(); }
+            }, { threshold: 0.3 });
+            if (document.getElementById('provasocial')) observer.observe(document.getElementById('provasocial'));
 
-            const counterSection = document.getElementById('provasocial');
-            if (counterSection) {
-                observer.observe(counterSection);
-            }
-            // ---------------------------------------------------
-
-
-            // --- Lógica do Lightbox ---
+            // Lightbox
             const lightbox = document.getElementById('myLightbox');
             const lightboxImage = document.getElementById('lightboxImage');
             const lightboxCaption = document.getElementById('lightboxCaption');
-            const closeBtn = document.querySelector('.lightbox-close');
-
             document.querySelectorAll('.gallery-thumb').forEach(thumb => {
                 thumb.addEventListener('click', function() {
                     lightbox.style.display = 'flex';
                     lightboxImage.src = this.src;
-                    lightboxCaption.innerHTML = this.getAttribute('data-caption');
+                    lightboxCaption.innerHTML = this.getAttribute('data-caption') || '';
                 });
             });
+            document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.style.display = 'none');
+            lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
 
-            closeBtn.addEventListener('click', function() {
-                lightbox.style.display = 'none';
-            });
-
-            lightbox.addEventListener('click', function(e) {
-                if (e.target === lightbox) {
-                    lightbox.style.display = 'none';
-                }
-            });
-
-
-            // --- Lógica do Formulário de Contato e Chat (Mantidas) ---
-            const contactForm = document.getElementById('contactForm');
-            const formSuccessMessage = document.getElementById('formSuccess');
-            const formErrorMessage = document.getElementById('formError');
-
-            contactForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                formSuccessMessage.classList.add('hidden');
-                formErrorMessage.classList.add('hidden');
-
-                const payload = {
-                    municipio: document.getElementById('municipio').value.trim(),
-                    nome: document.getElementById('nome').value.trim(),
-                    telefone: document.getElementById('telefone').value.trim(),
-                    email: document.getElementById('email').value.trim(),
-                    cargo: document.getElementById('cargo').value.trim(),
-                    populacao: document.getElementById('populacao').value.trim(),
-                    prioridade: document.getElementById('prioridade').value.trim(),
-                    mensagem: document.getElementById('mensagem').value.trim()
-                };
-
-                try {
-                    const res = await fetch('/api/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                    if (res.ok) {
-                        formSuccessMessage.classList.remove('hidden');
-                        contactForm.reset();
-                        setTimeout(() => { formSuccessMessage.classList.add('hidden'); }, 5000);
-                        document.getElementById('contato').scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    } else { formErrorMessage.classList.remove('hidden'); }
-                } catch (err) { formErrorMessage.classList.remove('hidden'); }
-            });
-
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-                });
-            });
-
+            // Menu Mobile Toggle
             const menuButton = document.getElementById('menuButton');
             const navLinks = document.getElementById('navLinks');
-            if (menuButton && navLinks) {
-                menuButton.addEventListener('click', () => {
-                    const isHidden = navLinks.classList.contains('hidden');
-                    navLinks.classList.toggle('hidden');
-                    menuButton.setAttribute('aria-expanded', String(isHidden));
-                });
-            }
+            menuButton.addEventListener('click', () => navLinks.classList.toggle('hidden'));
+        });
+    </script>
 
+    <script>
+        const links = {
+            whatsapp: "https://api.whatsapp.com/send?phone=5586999999999",
+            documentacao: "https://docs.grupocv.com.br"
+        };
+
+        const backend = {
+            url: "/api/contact",
+            chatUrl: "/api/chat"
+        };
+
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            document.getElementById('formSuccess').classList.add('hidden');
+            document.getElementById('formError').classList.add('hidden');
+
+            const payload = {
+                municipio: document.getElementById('municipio').value.trim(),
+                nome: document.getElementById('nome').value.trim(),
+                telefone: document.getElementById('telefone').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                cargo: document.getElementById('cargo').value.trim(),
+                populacao: document.getElementById('populacao').value.trim(),
+                prioridade: document.getElementById('prioridade').value.trim(),
+                mensagem: document.getElementById('mensagem').value.trim()
+            };
+
+            try {
+                const res = await fetch(backend.url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                if (res.ok) {
+                    document.getElementById('formSuccess').classList.remove('hidden');
+                    this.reset();
+                } else { document.getElementById('formError').classList.remove('hidden'); }
+            } catch (err) { document.getElementById('formError').classList.remove('hidden'); }
+        });
+
+        // Chat Script integration 
+        document.addEventListener('DOMContentLoaded', function() {
             const chatFab = document.getElementById('chatFab');
             const chatWidget = document.getElementById('chatWidget');
             const chatClose = document.getElementById('chatClose');
@@ -728,63 +570,4 @@
                 return s;
             }
             function uname() { return localStorage.getItem('chat_user_name') || ''; }
-            function uemail() { return localStorage.getItem('chat_user_email') || ''; }
-            function setUser(n, e) { localStorage.setItem('chat_user_name', n); localStorage.setItem('chat_user_email', e); }
-            function addMessage(author, text) {
-                const row = document.createElement('div');
-                const isUser = author === 'Você';
-                row.className = 'flex ' + (isUser ? 'justify-end' : 'justify-start');
-                const bubble = document.createElement('div');
-                bubble.className = 'max-w-[75%] px-3 py-2 rounded-lg ' + (isUser ? 'bg-cv-dark-green text-white' : 'bg-gray-100 text-gray-800');
-                bubble.textContent = text;
-                row.appendChild(bubble);
-                chatMessages.appendChild(row);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            }
-            function showWidget() {
-                chatWidget.classList.remove('hidden');
-                if (uname() && uemail()) {
-                    prechat.classList.add('hidden');
-                    chatMessages.classList.remove('hidden');
-                    chatInputArea.classList.remove('hidden');
-                    if (!chatMessages.dataset.welcome) { addMessage('Gestor360', 'Olá! Como posso ajudar sua prefeitura hoje?'); chatMessages.dataset.welcome = '1'; }
-                } else {
-                    prechat.classList.remove('hidden');
-                    chatMessages.classList.add('hidden');
-                    chatInputArea.classList.add('hidden');
-                }
-            }
-            chatFab.addEventListener('click', showWidget);
-            chatClose.addEventListener('click', () => { chatWidget.classList.add('hidden'); });
-            startChat.addEventListener('click', () => {
-                const n = document.getElementById('chatName').value.trim();
-                const e = document.getElementById('chatEmail').value.trim();
-                if (!n || !e) return;
-                setUser(n, e);
-                prechat.classList.add('hidden');
-                chatMessages.classList.remove('hidden');
-                chatInputArea.classList.remove('hidden');
-                addMessage('Gestor360', 'Perfeito, ' + n + '. Pode enviar sua dúvida. Um consultor entrará em contato em breve.');
-            });
-            async function sendToServer(text) {
-                const payload = { session: sid(), name: uname(), email: uemail(), text: text, ts: new Date().toISOString() };
-                try { 
-                    await fetch('/api/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) 
-                }); 
-                } catch (_e) {}
-            }
-            chatSend.addEventListener('click', async () => {
-                const v = chatInput.value.trim();
-                if (!v) return;
-                addMessage('Você', v);
-                chatInput.value = '';
-                await sendToServer(v);
-                setTimeout(() => { addMessage('Gestor360', 'Obrigado! Sua mensagem foi registrada. Em breve retornaremos pelo e-mail informado.'); }, 800);
-            });
-            chatInput.addEventListener('keydown', async (e) => { if (e.key === 'Enter') { e.preventDefault(); chatSend.click(); } });
-
-        });
-    </script>
-
-</body>
-</html>
+            function uemail() { return localStorage.
