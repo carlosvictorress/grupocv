@@ -3,32 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Gestoor 360 - A Plataforma de Gestão Pública 4.0 e IA</title>
-    <meta name="description" content="Gestoor 360: A plataforma mais completa para gestão pública, com RH, Ponto Biométrico, Frota, Almoxarifado, Patrimônio e Assinatura Digital.">
-    <link rel="canonical" href="https://www.grupocv.com.br/">
+    <title>Gestoor 360 — Ecossistema de Gestão Pública 4.0</title>
+    <meta name="description" content="Gestoor 360: A plataforma mais completa para gestão pública moderna, integrando RH, Frota, Patrimônio e IA.">
     
-    <meta property="og:title" content="Gestoor 360 - O Futuro da Gestão Pública">
-    <meta property="og:description" content="Transforme a gestão do seu município com processos digitais, ponto biométrico, dashboards inteligentes e automação total.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.grupocv.com.br/">
-
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script defer src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
                     colors: {
-                        'cv-dark-green': '#145A2D',   
-                        'cv-orange': '#FFA500',       
-                        'cv-medium-green': '#008B00', 
-                        'cv-light-green': '#F4FDF7',  
-                        'cv-blue-accent': '#0098F3',
+                        'brand-bg': '#FAFAFA',
+                        'brand-card': '#FFFFFF',
+                        'brand-text-main': '#1D1D1F',
+                        'brand-text-muted': '#86868B',
+                        'brand-border': '#E8E8ED',
+                        'brand-dark': '#000000',
+                        'brand-accent': '#00CD66' // Verde do primeiro código para destaques
                     }
                 }
             }
@@ -36,538 +37,522 @@
     </script>
 
     <style>
-        .typed-cursor { color: #FFA500; animation: typedjsBlink 0.7s infinite; }
-        @keyframes typedjsBlink { 50% { opacity: 0.0; } }
+        body {
+            background-color: #FAFAFA;
+            color: #1D1D1F;
+            overflow-x: hidden;
+        }
         
+        /* Linhas guia de engenharia sutis ao fundo */
+        .grid-guide {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0.01) 1px, transparent 1px);
+            background-size: calc(100% / 3) 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Classes de estado inicial para animação GSAP */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(30px);
+            will-change: transform, opacity;
+        }
+
+        .reveal-stagger {
+            opacity: 0;
+            transform: translateY(20px);
+            will-change: transform, opacity;
+        }
+
+        /* Título Hero com clipping para animação de revelação */
+        .hero-clip {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .hero-clip span {
+            display: inline-block;
+            transform: translateY(100%);
+            will-change: transform;
+        }
+
+        /* Hover effect sofisticado nos cards */
         .module-card {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .module-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
-        }
-        
-        .cta-shine {
-            position: relative; overflow: hidden;
-        }
-        .cta-shine:before {
-            content: ''; position: absolute; top: 0; left: -75%; width: 50%; height: 100%;
-            background: rgba(255, 255, 255, 0.3); transform: skewX(-20deg); transition: transform 0.6s;
-        }
-        .cta-shine:hover:before {
-            transform: skewX(-20deg) translateX(250%);
+            border-color: #D2D2D7;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
         }
 
-        .bio-scan {
-            position: relative; border-radius: 0.75rem; overflow: hidden; height: 180px;
-            background: #111; display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 1.5rem;
-        }
-        .bio-scan::after {
-            content: ''; position: absolute; width: 100%; height: 3px;
-            background: linear-gradient(90deg, transparent, #00CD66, transparent);
-            top: 0; animation: scanline 3s infinite linear;
-        }
-        @keyframes scanline {
-            0% { top: 0; } 50% { top: 100%; } 100% { top: 0; }
-        }
-
-        .tab-btn[aria-selected="true"] {
-            background-color: #EBFEEF;
-            border-color: #008B00 !important;
-        }
-
-        .lightbox {
-            display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center;
-        }
-        .lightbox-content { margin: auto; display: block; width: 80%; max-width: 900px; max-height: 90%; object-fit: contain; }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #FAFAFA; }
+        ::-webkit-scrollbar-thumb { background: #D2D2D7; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #86868B; }
     </style>
 </head>
+<body class="antialiased">
 
-<body class="bg-white text-gray-800 font-sans antialiased">
+    <div class="grid-guide"></div>
 
-    <header class="bg-white/80 backdrop-blur-md shadow-sm fixed w-full z-50 border-b border-gray-100">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="flex items-center font-bold text-xl tracking-tight text-gray-900">
-                <span class="text-cv-dark-green">GESTOOR</span><span class="text-cv-orange">360</span>
+    <header class="fixed top-0 left-0 w-full z-50 bg-[#FAFAFA]/80 backdrop-blur-xl border-b border-brand-border">
+        <nav class="max-w-[1600px] mx-auto px-6 md:px-12 py-4 flex justify-between items-center">
+            <a href="#" class="font-extrabold tracking-tighter text-lg text-brand-text-main flex items-center gap-1">
+                GESTOOR<span class="text-brand-accent font-light">360</span>
             </a>
-            
-            <button id="menuButton" aria-label="Abrir menu" aria-expanded="false" class="md:hidden text-cv-dark-green text-2xl">
-                <i class="bi bi-list"></i>
-            </button>
-            
-            <div id="navLinks" class="hidden md:flex space-x-6 items-center">
-                <a href="#nucleos" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Módulos</a>
-                <a href="#ponto" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Ponto Biométrico</a>
-                <a href="#provasocial" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Resultados</a>
-                <a href="#galeria" class="text-gray-600 font-semibold text-sm hover:text-cv-dark-green transition duration-300">Telas</a>
-                <a href="#contato" class="bg-cv-orange text-white text-sm font-bold px-5 py-2 rounded-lg cta-shine transition duration-300 shadow-md shadow-cv-orange/20">
-                    Solicitar Demonstração
-                </a>
+            <div class="hidden md:flex items-center space-x-8 text-xs font-medium tracking-wide text-brand-text-muted">
+                <a href="#solucoes" class="hover:text-brand-text-main transition">O Ecossistema</a>
+                <a href="#ponto" class="hover:text-brand-text-main transition">Ponto Biométrico</a>
+                <a href="#resultados" class="hover:text-brand-text-main transition">Métricas</a>
+                <a href="#auditoria" class="hover:text-brand-text-main transition">Dashboards</a>
             </div>
+            <a href="#contato" class="bg-brand-dark text-white text-xs font-semibold px-5 py-2.5 rounded-full hover:bg-neutral-800 transition duration-300 transform hover:scale-105 shadow-sm">
+                Solicitar Demonstração
+            </a>
         </nav>
     </header>
 
-    <main>
-        <section id="vanta-hero" class="relative max-h-[650px] min-h-[500px] h-screen flex items-center justify-center text-center overflow-hidden bg-gray-50 pt-12">
-            <div class="relative z-10 p-4 max-w-4xl mx-auto">
-                <p class="text-xs font-bold text-cv-orange tracking-widest uppercase mb-2" data-aos="fade-up">Tecnologia Pública de Alto Impacto</p>
-                <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight tracking-tight" data-aos="fade-up" data-aos-delay="100">
-                    O Fim da Burocracia.<br>O Início da <span id="typed-hero" class="text-cv-medium-green"></span>
+    <main class="relative z-10 pt- header-space">
+
+        <section class="min-h-[90vh] flex items-center px-6 md:px-12 pt-28 pb-16 relative overflow-hidden">
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand-accent/5 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto w-full relative">
+                <p class="text-xs font-bold uppercase tracking-[0.25em] text-brand-accent mb-5 reveal-up">Tecnologia Pública de Alto Impacto</p>
+                
+                <h1 class="text-5xl sm:text-7xl md:text-8xl font-extralight tracking-tight text-brand-text-main leading-[1.05] mb-10 hero-clip">
+                    <span>O fim da burocracia.</span><br>
+                    <span class="font-semibold">A era da <span class="text-brand-text-muted">Administração Digital.</span></span>
                 </h1>
-                <p class="text-base md:text-lg text-gray-600 mb-8 max-w-2xl mx-auto font-medium" data-aos="fade-up" data-aos-delay="300">
-                    Sua plataforma completa e inteligente: RH Biométrico, Assinatura Digital, Controle de Frota e Dashboards em Tempo Real.
+                
+                <p class="text-base md:text-xl text-brand-text-muted max-w-2xl font-light leading-relaxed mb-14 reveal-up">
+                    Sua plataforma completa e inteligente em nuvem: RH Biométrico, Assinatura Digital, Controle de Frota, Patrimônio e Dashboards em Tempo Real. Projetado para precisão cirúrgica na gestão municipal.
                 </p>
-                <div data-aos="zoom-in" data-aos-delay="500">
-                    <a href="#contato" class="bg-cv-dark-green text-white text-base font-bold px-8 py-3.5 rounded-lg hover:bg-cv-medium-green transition duration-300 shadow-lg shadow-cv-dark-green/30 inline-block transform hover:scale-105 cta-shine">
-                        Agendar Demonstração Gratuita
+                
+                <div class="flex flex-col sm:flex-row gap-5 reveal-up">
+                    <a href="#contato" class="bg-brand-dark text-white text-sm font-semibold px-8 py-4 rounded-xl hover:bg-neutral-800 transition text-center shadow-lg shadow-black/5 transform hover:-translate-y-0.5">
+                        Agendar Apresentação Técnica
+                    </a>
+                    <a href="#solucoes" class="border border-brand-border bg-white text-brand-text-main text-sm font-medium px-8 py-4 rounded-xl hover:bg-brand-bg transition text-center flex items-center justify-center gap-2">
+                        Conhecer Módulos <i class="bi bi-arrow-down text-xs text-brand-text-muted"></i>
                     </a>
                 </div>
             </div>
         </section>
 
-        <section class="py-6 bg-white border-y border-gray-100">
-            <div class="container mx-auto px-6 text-center">
-                <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 opacity-60">
-                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Limeira (SP)</div>
-                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Pato Branco (PR)</div>
-                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Feira de Santana (BA)</div>
-                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Sorriso (MT)</div>
-                    <div class="flex items-center font-bold text-gray-500 text-xs gap-1"><i class="bi bi-bank2 text-lg text-cv-dark-green"></i>Pinhais (PR)</div>
+        <section class="py-16 border-y border-brand-border bg-white relative reveal-up">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 relative">
+                <p class="text-[11px] font-mono tracking-widest text-brand-text-muted uppercase text-center mb-10">// Municípios que confiam na nossa automação inteligente</p>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8 items-center text-center text-sm font-semibold text-brand-text-main opacity-80">
+                    <div class="flex items-center justify-center gap-2"><i class="bi bi-bank text-brand-accent"></i>Limeira (SP)</div>
+                    <div class="flex items-center justify-center gap-2"><i class="bi bi-bank text-brand-accent"></i>Pato Branco (PR)</div>
+                    <div class="flex items-center justify-center gap-2"><i class="bi bi-bank text-brand-accent"></i>Feira de Santana (BA)</div>
+                    <div class="flex items-center justify-center gap-2"><i class="bi bi-bank text-brand-accent"></i>Sorriso (MT)</div>
+                    <div class="flex items-center justify-center gap-2"><i class="bi bi-bank text-brand-accent"></i>Pinhais (PR)</div>
                 </div>
             </div>
         </section>
 
-        <section id="nucleos" class="py-14 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-2xl mx-auto mb-10">
-                    <p class="text-xs font-bold text-cv-medium-green tracking-widest uppercase mb-1">Soluções Completas</p>
-                    <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 tracking-tight">O Ecossistema da Gestão Pública Simplificada</h2>
+        <section id="solucoes" class="py-32 bg-white">
+            <div class="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16">
+                
+                <div class="lg:col-span-4 sticky top-32 h-fit">
+                    <span class="text-xs font-mono text-brand-text-muted block mb-4">// 01 . ARQUITETURA</span>
+                    <h2 class="text-4xl md:text-5xl font-light tracking-tight text-brand-text-main mb-8 leading-tight">Um ecossistema, <br><span class="font-semibold">zero lacunas.</span></h2>
+                    <p class="text-base text-brand-text-muted leading-relaxed font-light mb-8">
+                        Centralize sua estrutura funcional e acabe com sistemas isolados. O Gestoor 360 une todas as secretarias sob uma única camada de dados segura e auditável.
+                    </p>
+                    <a href="#contato" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-accent hover:text-brand-dark transition group">
+                        Solicitar PDF Técnico <i class="bi bi-arrow-right transition-transform group-hover:translate-x-1"></i>
+                    </a>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 max-w-5xl mx-auto">
-                    <div class="lg:col-span-5 space-y-3 flex flex-col justify-start">
-                        <button onclick="switchTab(1)" id="tab-btn-1" aria-selected="true" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
-                            <h3 class="font-bold text-base text-cv-dark-green mb-0.5">1. Gestão de Pessoal e RH</h3>
-                            <p class="text-xs text-gray-500">Controle de servidores, prontuários e portarias automáticas.</p>
-                        </button>
-                        <button onclick="switchTab(2)" id="tab-btn-2" aria-selected="false" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
-                            <h3 class="font-bold text-base text-gray-900 mb-0.5">2. Logística e Frota</h3>
-                            <p class="text-xs text-gray-500">Controle rígido de combustível, rotas e consumo.</p>
-                        </button>
-                        <button onclick="switchTab(3)" id="tab-btn-3" aria-selected="false" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
-                            <h3 class="font-bold text-base text-gray-900 mb-0.5">3. Suprimentos e Patrimônio</h3>
-                            <p class="text-xs text-gray-500">Almoxarifado central, requisições e tombamentos.</p>
-                        </button>
-                        <button onclick="switchTab(4)" id="tab-btn-4" aria-selected="false" class="tab-btn w-full text-left p-4 bg-white border border-gray-200 rounded-xl transition duration-300 focus:outline-none">
-                            <h3 class="font-bold text-base text-gray-900 mb-0.5">4. Logística de Educação</h3>
-                            <p class="text-xs text-gray-500">Rotas de transporte escolar, merenda e Agricultura Familiar.</p>
-                        </button>
-                    </div>
-
-                    <div class="lg:col-span-7 bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-center">
-                        
-                        <div id="tab-content-1" class="tab-content space-y-4">
-                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-people-fill text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Núcleo de Pessoal Inteligente</h4></div>
-                            <p class="text-sm text-gray-600">Centralize a estrutura funcional e reduza o tempo de emissão de folhas e portarias:</p>
-                            <ul class="space-y-2 text-sm font-medium text-gray-700">
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Geração automática de portarias e admissões.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Prontuário digital individualizado em nuvem.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Emissão automatizada de Guias Médicas (GAM).</li>
-                            </ul>
-                        </div>
-
-                        <div id="tab-content-2" class="tab-content hidden space-y-4">
-                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-truck text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Controle de Frotas e Abastecimento</h4></div>
-                            <p class="text-sm text-gray-600">Monitore os ativos móveis e acabe com desperdícios de combustível:</p>
-                            <ul class="space-y-2 text-sm font-medium text-gray-700">
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Liberação e limites de cotas por secretaria.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Rastreabilidade eletrônica de rotas de veículos.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Alertas de manutenções preventivas integradas.</li>
-                            </ul>
-                        </div>
-
-                        <div id="tab-content-3" class="tab-content hidden space-y-4">
-                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-box-seam-fill text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Almoxarifado e Controle Patrimonial</h4></div>
-                            <p class="text-sm text-gray-600">Controle exato do fluxo de insumos e do tombamento de bens patrimoniais:</p>
-                            <ul class="space-y-2 text-sm font-medium text-gray-700">
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Requisições de materiais e baixa de estoque eletrônicos.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Alerta automático de estoque mínimo crítico.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Inventário físico por localização via QR Code.</li>
-                            </ul>
-                        </div>
-
-                        <div id="tab-content-4" class="tab-content hidden space-y-4">
-                            <div class="flex items-center space-x-2 text-cv-medium-green"><i class="bi bi-mortarboard-fill text-2xl"></i><h4 class="text-xl font-bold text-gray-900">Gestão de Educação e Alimentação</h4></div>
-                            <p class="text-sm text-gray-600">Planejamento e auditoria transparente para a Secretaria de Educação:</p>
-                            <ul class="space-y-2 text-sm font-medium text-gray-700">
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Otimização e roteiros do Transporte Escolar.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Gestão de cardápios e controle da Merenda Escolar.</li>
-                                <li class="flex items-center"><i class="bi bi-check2-circle text-cv-medium-green mr-2"></i> Recibos de repasse da Agricultura Familiar para a <b>Escola</b>.</li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="ponto" class="py-14 bg-cv-light-green border-b-4 border-cv-medium-green">
-            <div class="container mx-auto px-6">
-                 <h2 class="text-2xl md:text-3xl font-extrabold text-center text-gray-900 mb-2" data-aos="fade-up">
-                    Ponto Biométrico: Zero Fraude, 100% Auditável.
-                </h2>
-                <p class="text-sm md:text-base text-center text-gray-600 mb-10 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
-                    Frequência de servidores segura combinando Reconhecimento Facial e GPS.
-                </p>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-center">
-                    <div class="lg:col-span-1 shadow-md rounded-xl bg-white overflow-hidden" data-aos="zoom-in" data-aos-delay="300">
-                        <div class="bio-scan" style="height: 160px;">
-                            <i class="bi bi-camera-video-fill text-4xl text-cv-medium-green"></i>
-                        </div>
-                         <div class="p-4 text-center">
-                            <h4 class="text-base font-bold text-gray-900">Biometria Facial</h4>
-                            <p class="text-gray-500 text-xs mt-1">Identidade confirmada em menos de 1 segundo.</p>
-                        </div>
-                    </div>
+                <div class="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                     
-                    <div class="lg:col-span-2 space-y-4" data-aos="fade-left" data-aos-delay="500">
-                        <div class="flex items-start bg-white p-4 rounded-xl shadow-sm border-l-4 border-cv-orange">
-                            <i class="bi bi-map-fill text-2xl text-cv-orange mr-3 mt-0.5"></i>
+                    <div class="bg-brand-bg p-8 rounded-3xl border border-brand-border module-card reveal-stagger">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-white border border-brand-border flex items-center justify-center text-brand-accent shadow-inner">
+                                <i class="bi bi-people-fill text-xl"></i>
+                            </div>
+                            <div class="text-xs font-mono text-brand-text-muted">01.1 / PESSOAL & RH</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-text-main mb-4">Núcleo de Pessoal Inteligente</h3>
+                        <p class="text-sm text-brand-text-muted font-light leading-relaxed mb-6">Reduza drasticamente o tempo de emissão de folhas e portarias com gestão centralizada em nuvem.</p>
+                        <ul class="space-y-3 text-xs font-medium text-brand-text-main border-t border-brand-border pt-6">
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Prontuário digital individualizado e seguro.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Geração automática de portarias e contratos.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Emissão automatizada de Guias Médicas (GAM).</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-brand-bg p-8 rounded-3xl border border-brand-border module-card reveal-stagger md:translate-y-12">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-white border border-brand-border flex items-center justify-center text-brand-accent shadow-inner">
+                                <i class="bi bi-truck text-xl"></i>
+                            </div>
+                            <div class="text-xs font-mono text-brand-text-muted">01.2 / LOGÍSTICA ATIVA</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-text-main mb-4">Controle de Frotas e Insumos</h3>
+                        <p class="text-sm text-brand-text-muted font-light leading-relaxed mb-6">Monitore ativos móveis em tempo real e elimine desperdícios de combustível e manutenção.</p>
+                        <ul class="space-y-3 text-xs font-medium text-brand-text-main border-t border-brand-border pt-6">
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Liberação e limites de cotas por secretaria.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Rastreabilidade eletrônica de rotas (GPS).</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Alertas de manutenções preventivas integradas.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-brand-bg p-8 rounded-3xl border border-brand-border module-card reveal-stagger">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-white border border-brand-border flex items-center justify-center text-brand-accent shadow-inner">
+                                <i class="bi bi-box-seam-fill text-xl"></i>
+                            </div>
+                            <div class="text-xs font-mono text-brand-text-muted">01.3 / INFRAESTRUTURA</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-text-main mb-4">Almoxarifado e Patrimônio</h3>
+                        <p class="text-sm text-brand-text-muted font-light leading-relaxed mb-6">Controle exato do fluxo de insumos e do tombamento de bens patrimoniais com auditoria facilitada.</p>
+                        <ul class="space-y-3 text-xs font-medium text-brand-text-main border-t border-brand-border pt-6">
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Requisições e baixa de estoque 100% eletrônicas.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Alerta automático de estoque mínimo crítico.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Inventário físico via QR Code por localização.</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-brand-bg p-8 rounded-3xl border border-brand-border module-card reveal-stagger md:translate-y-12">
+                        <div class="flex items-center gap-4 mb-6">
+                            <div class="w-12 h-12 rounded-2xl bg-white border border-brand-border flex items-center justify-center text-brand-accent shadow-inner">
+                                <i class="bi bi-mortarboard-fill text-xl"></i>
+                            </div>
+                            <div class="text-xs font-mono text-brand-text-muted">01.4 / EDUCAÇÃO</div>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-text-main mb-4">Logística da Educação</h3>
+                        <p class="text-sm text-brand-text-muted font-light leading-relaxed mb-6">Planejamento transparente para transporte, merenda e Agricultura Familiar.</p>
+                        <ul class="space-y-3 text-xs font-medium text-brand-text-main border-t border-brand-border pt-6">
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Otimização de rotas do Transporte Escolar.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Gestão de cardápios e controle da Merenda.</li>
+                            <li class="flex items-center"><i class="bi bi-check2-circle text-brand-accent mr-2.5 text-base"></i> Recibos digitais para Agricultura Familiar nas escolas.</li>
+                        </ul>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <section id="ponto" class="py-32 px-6 md:px-12 bg-brand-bg border-y border-brand-border relative overflow-hidden">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative">
+                <div class="reveal-up">
+                    <span class="text-xs font-mono text-brand-text-muted block mb-4">// 02 . SEGURANÇA OPERACIONAL</span>
+                    <h2 class="text-4xl md:text-6xl font-light tracking-tight text-brand-text-main mb-8 leading-tight">Ponto Biométrico <br><span class="font-semibold text-brand-dark">Zero Fraude.</span></h2>
+                    <p class="text-base text-brand-text-muted font-light leading-relaxed mb-10 max-w-xl">
+                        A solução definitiva que combina Reconhecimento Facial avançado e Georreferenciamento auditável por GPS. Garanta a frequência real dos servidores com 100% de integridade dos dados, pronto para os órgãos de controle.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm font-semibold text-brand-text-main">
+                        <div class="flex items-center bg-white p-4 rounded-xl border border-brand-border shadow-sm"><i class="bi bi-geo-alt-fill text-brand-accent mr-3 text-lg"></i> GPS Status: Coordenada Obrigatória</div>
+                        <div class="flex items-center bg-white p-4 rounded-xl border border-brand-border shadow-sm"><i class="bi bi-shield-lock-fill text-brand-accent mr-3 text-lg"></i> Biometria Facial Síncrona</div>
+                    </div>
+                </div>
+
+                <div id="ponto-container" class="bg-white border border-brand-border rounded-[32px] p-10 aspect-[5/4] flex flex-col justify-between shadow-xl shadow-black/[0.02] relative overflow-hidden reveal-up">
+                    <div class="flex justify-between items-center border-b border-brand-border pb-6">
+                        <span class="text-xs font-mono text-brand-text-muted uppercase tracking-wider">Acurácia de Frequência</span>
+                        <div class="flex items-center gap-2">
+                            <span class="relative flex h-2 w-2">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-accent opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-accent"></span>
+                            </span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand-accent/10 text-brand-accent">Monitoramento Ativo</span>
+                        </div>
+                    </div>
+
+                    <div class="absolute right-10 top-1/2 -translate-y-1/2 h-1/2 w-16 bg-brand-bg border border-brand-border rounded-full p-2.5 flex flex-col items-center justify-between shadow-inner">
+                        <i class="bi bi-chevron-up text-neutral-300 text-xs"></i>
+                        <div id="objeto-movivel" class="w-10 h-10 rounded-full bg-brand-dark flex items-center justify-center text-white shadow-lg transform will-change-transform">
+                            <i class="bi bi-person-check-fill text-lg"></i>
+                        </div>
+                        <i class="bi bi-chevron-down text-neutral-300 text-xs"></i>
+                    </div>
+
+                    <div class="py-10 pr-24 flex-1 flex flex-col justify-center relative">
+                         <div class="absolute inset-y-0 left-0 w-0.5 bg-gradient-to-b from-transparent via-brand-accent to-transparent animate-pulse"></div>
+                        
+                        <div class="w-20 h-20 rounded-3xl bg-brand-bg border border-brand-border flex items-center justify-center mb-6 text-brand-accent shadow-inner transform rotate-[-5deg]">
+                            <i class="bi bi-person-bounding-box text-4xl"></i>
+                        </div>
+                        <div class="text-lg font-bold text-brand-text-main">Validação Biométrica Facial</div>
+                        <p class="text-sm text-brand-text-muted mt-2 font-light leading-relaxed max-w-sm">Identidade confirmada em <span class="font-semibold text-brand-dark">&lt; 1 segundo</span> com cruzamento de coordenadas geográficas da lotação.</p>
+                    </div>
+
+                    <div class="bg-brand-bg p-5 rounded-2xl border border-brand-border text-xs font-mono text-brand-text-muted flex items-center gap-3 max-w-[70%]">
+                        <i class="bi bi-info-circle text-brand-accent text-base"></i>
+                        Gerando espelhos de ponto auditáveis instantaneamente.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resultados" class="py-36 bg-brand-dark text-white border-b border-white/5 relative overflow-hidden">
+            <div class="absolute -top-40 -right-40 w-96 h-96 bg-brand-accent/10 rounded-full blur-[100px] pointer-events-none"></div>
+            
+            <div class="max-w-7xl mx-auto px-6 md:px-12 relative text-center">
+                <span class="text-xs font-mono text-brand-accent block mb-5reveal-up">// 03 . IMPACTO MEDIDO EM DADOS</span>
+                <h2 class="text-4xl md:text-6xl font-light text-white mb-20 leading-tight reveal-up">Alta performance na<br><span class="font-semibold">máquina pública.</span></h2>
+                
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-6">
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5 reveal-stagger relative group hover:border-brand-accent/30 transition-colors">
+                        <div class="text-6xl md:text-7xl font-extrabold text-brand-accent mb-4 tracking-tighter"><span class="counter" data-target="99.9">0</span>%</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 border-t border-white/10 pt-5">Precisão de Frequência</div>
+                    </div>
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5 reveal-stagger relative group hover:border-brand-accent/30 transition-colors lg:translate-y-10">
+                        <div class="text-6xl md:text-7xl font-extrabold text-brand-accent mb-4 tracking-tighter"><span class="counter" data-target="85">0</span>%</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 border-t border-white/10 pt-5">Redução de Papel (RH/Frota)</div>
+                    </div>
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5 reveal-stagger relative group hover:border-brand-accent/30 transition-colors">
+                        <div class="text-6xl md:text-7xl font-extrabold text-brand-accent mb-4 tracking-tighter"><span class="counter" data-target="15">0</span>%</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 border-t border-white/10 pt-5">Otimização de Consumo de Frota</div>
+                    </div>
+                    <div class="bg-neutral-900/50 p-8 rounded-3xl border border-white/5 reveal-stagger relative group hover:border-brand-accent/30 transition-colors lg:translate-y-10">
+                        <div class="text-6xl md:text-7xl font-extrabold text-brand-accent mb-4 tracking-tighter"><span class="counter" data-target="72">0</span>h</div>
+                        <div class="text-xs font-mono uppercase tracking-wider text-neutral-400 border-t border-white/10 pt-5">Tempo Salvo / Mês por Secretaria</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="auditoria" class="py-32 bg-brand-bg relative">
+            <div class="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="order-2 lg:order-1 relative reveal-up">
+                    <div class="absolute inset-10 bg-brand-accent/20 rounded-full blur-[80px] pointer-events-none opacity-50"></div>
+                    <div class="bg-white border border-brand-border p-3 rounded-3xl shadow-2xl shadow-black/[0.03] relative transform hover:scale-[1.01] transition-transform duration-500 hover:rotate-[-1deg]">
+                        <img src="DASHBOARD VISAO GERAL .png" alt="Painel Gerencial Gestoor 360" class="rounded-2xl w-full object-cover aspect-video">
+                        <div class="absolute top-6 left-6 bg-brand-dark/80 backdrop-blur-sm text-white font-mono text-[10px] px-3 py-1.5 rounded-full uppercase tracking-wider">Live Data Stream</div>
+                    </div>
+                </div>
+
+                <div class="order-1 lg:order-2 lg:pl-16 reveal-up">
+                    <span class="text-xs font-mono text-brand-text-muted block mb-4">// 04 . TRANSPARÊNCIA E GESTÃO 4.0</span>
+                    <h2 class="text-4xl md:text-5xl font-light tracking-tight text-brand-text-main mb-8 leading-tight">Decisões ágeis, <br><span class="font-semibold text-brand-dark">visão consolidada.</span></h2>
+                    <p class="text-base text-brand-text-muted font-light leading-relaxed mb-10 max-w-xl">
+                        Acabe com as planilhas soltas. O Gestoor 360 oferece dashboards gerenciais em tempo real. Monitore a folha operacional, médias salariais por lotação e consumo logístico de combustível em um único painel centralizado e intuitivo.
+                    </p>
+                    <div class="flex items-center gap-3 text-xs font-bold text-brand-dark border-t border-brand-border pt-8 max-w-sm">
+                        <i class="bi bi-display text-2xl text-brand-accent"></i>
+                        Interface responsiva para Prefeitos, Secretários e Diretores.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contato" class="py-32 bg-white relative border-t border-brand-border">
+            <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+                
+                <div class="lg:col-span-5 reveal-up sticky top-32 h-fit">
+                    <span class="text-xs font-mono text-brand-accent block mb-4">// SOLICITAÇÃO DE APRESENTAÇÃO</span>
+                    <h2 class="text-4xl md:text-5xl font-light tracking-tight text-brand-text-main mb-8 leading-tight">Prepare seu município para o <span class="font-semibold">Futuro Digital.</span></h2>
+                    <p class="text-base text-brand-text-muted font-light leading-relaxed max-w-md">
+                        Agende uma demonstração técnica. Entenda como o Gestoor 360 pode ser parametrizado para a realidade demográfica e orçamentária do seu município.
+                    </p>
+                    <div class="mt-12 space-y-4 text-xs text-brand-text-muted font-mono">
+                        <p class="flex items-center gap-2"><i class="bi bi-envelope text-brand-accent"></i> institucional@grupocv.com.br</p>
+                        <p class="flex items-center gap-2"><i class="bi bi-whatsapp text-brand-accent"></i> +55 (86) 99999-9999</p>
+                    </div>
+                </div>
+                
+                <div class="lg:col-span-7 reveal-up">
+                    <form id="contactForm" class="space-y-6 bg-brand-bg p-10 md:p-12 rounded-[32px] border border-brand-border shadow-xl shadow-black/[0.01]">
+                        <div id="formSuccess" class="hidden bg-brand-accent/10 text-brand-accent border border-brand-accent/20 text-xs px-5 py-4 rounded-xl text-center font-semibold mb-4">
+                            <i class="bi bi-check-circle-fill mr-2"></i> Solicitação recebida com sucesso. Nossa equipe técnica entrará em contato em breve.
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <h4 class="text-base font-bold text-gray-900 mb-0.5">Georreferência Auditável (GPS)</h4>
-                                <p class="text-gray-600 text-xs">Vincula obrigatoriamente a batida de ponto às coordenadas geográficas da lotação do servidor.</p>
+                                <label class="block text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-mono" for="nome">Seu Nome*</label>
+                                <input type="text" id="nome" required class="w-full px-4 py-3.5 bg-white border border-brand-border rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/50 text-sm text-brand-text-main transition shadow-inner">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-mono" for="municipio">Nome do Município*</label>
+                                <input type="text" id="municipio" required class="w-full px-4 py-3.5 bg-white border border-brand-border rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/50 text-sm text-brand-text-main transition shadow-inner">
                             </div>
                         </div>
 
-                        <div class="flex items-start bg-white p-4 rounded-xl shadow-sm border-l-4 border-cv-dark-green">
-                            <i class="bi bi-file-earmark-spreadsheet-fill text-2xl text-cv-dark-green mr-3 mt-0.5"></i>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <h4 class="text-base font-bold text-gray-900 mb-0.5">Relatórios de Frequência Instantâneos</h4>
-                                <p class="text-gray-600 text-xs">Exporte espelhos de ponto e planilhas de auditoria prontas para envio imediato aos órgãos de controle.</p>
+                                <label class="block text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-mono" for="email">E-mail Institucional*</label>
+                                <input type="email" id="email" required class="w-full px-4 py-3.5 bg-white border border-brand-border rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/50 text-sm text-brand-text-main transition shadow-inner">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-mono" for="telefone">WhatsApp Corporativo*</label>
+                                <input type="tel" id="telefone" required placeholder="(00) 00000-0000" class="w-full px-4 py-3.5 bg-white border border-brand-border rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/50 text-sm text-brand-text-main transition shadow-inner">
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="provasocial" class="py-14 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto text-center">
-                    <div class="p-4 bg-cv-light-green rounded-xl border-t-4 border-cv-dark-green shadow-sm">
-                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="99.9">99.9%</div>
-                        <p class="text-xs font-semibold text-gray-500">Precisão de Ponto</p>
-                    </div>
-                    <div class="p-4 bg-gray-50 rounded-xl border-t-4 border-cv-orange shadow-sm">
-                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="85">85%</div>
-                        <p class="text-xs font-semibold text-gray-500">Redução de Papel</p>
-                    </div>
-                    <div class="p-4 bg-cv-light-green rounded-xl border-t-4 border-cv-blue-accent shadow-sm">
-                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="15">15%</div>
-                        <p class="text-xs font-semibold text-gray-500">Otimização de Frota</p>
-                    </div>
-                    <div class="p-4 bg-gray-50 rounded-xl border-t-4 border-cv-medium-green shadow-sm">
-                        <div class="text-3xl font-black text-gray-900 mb-0.5 counter" data-target="72">72h</div>
-                        <p class="text-xs font-semibold text-gray-500">Tempo Salvo / Mês</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="dashboards" class="py-14 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
-                    <div data-aos="fade-right">
-                        <p class="text-xs font-bold text-cv-orange tracking-widest uppercase mb-1">Visão Gerencial Unificada</p>
-                        <h2 class="text-2xl md:text-3xl font-extrabold text-gray-900 mb-4">Painéis em Tempo Real para Decisões Ágeis</h2>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4">
-                            Monitore indicadores essenciais por secretaria sem planilhas soltas. No painel do Gestoor 360, você acompanha a folha operacional, médias salariais e consumo logístico de combustível de forma unificada.
-                        </p>
-                    </div>
-                    <div class="shadow-xl rounded-xl overflow-hidden border border-gray-200 cursor-pointer" data-aos="zoom-in">
-                        <img src="DASHBOARD VISAO GERAL .png" alt="Dashboard do Sistema" class="gallery-thumb w-full object-cover" data-caption="Dashboard Gerencial Central: Controle de Servidores e Combustível">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="galeria" class="py-14 bg-white">
-            <div class="container mx-auto px-6">
-                <div class="text-center max-w-xl mx-auto mb-10">
-                    <h2 class="text-2xl font-extrabold text-gray-900">Interface Limpa e Intuitiva</h2>
-                    <p class="text-xs text-gray-400 mt-1">Clique para inspecionar os recursos operacionais em alta resolução.</p>
-                </div>
-
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-5xl mx-auto">
-                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
-                        <img src="CONTROLE DE PONTO .png" alt="Frequência" class="gallery-thumb w-full rounded-md" data-caption="Módulo de Frequência de Ponto: Filtros e Auditoria Georreferenciada">
-                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Ponto Eletrônico</p>
-                    </div>
-                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
-                        <img src="ADICIONAR NOVO SERVIDOR .png" alt="RH" class="gallery-thumb w-full rounded-md" data-caption="Cadastro de Servidor: Informações Funcionais, Dados Bancários e Lotação">
-                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Cadastro RH</p>
-                    </div>
-                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
-                        <img src="GERENCIAMENTO E CADASTRO DE VEICULOS .png" alt="Frota" class="gallery-thumb w-full rounded-md" data-caption="Controle de Frota: Cadastro de Veículos Oficiais e Rastreamento">
-                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Gestão de Frota</p>
-                    </div>
-                    <div class="p-1.5 bg-white border border-gray-100 shadow-sm rounded-lg cursor-pointer transform hover:scale-[1.02] transition duration-300">
-                        <img src="CONTROLE PATRIMONIAL .png" alt="Patrimônio" class="gallery-thumb w-full rounded-md" data-caption="Controle Patrimonial: Localização de Ativos, Código de Tombamento e Baixas">
-                        <p class="text-[11px] font-bold text-center mt-1 text-gray-500">Patrimônio</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="contato" class="py-14 bg-cv-dark-green text-white">
-            <div class="container mx-auto px-6">
-                <div class="max-w-xl mx-auto text-center mb-8">
-                    <h2 class="text-2xl md:text-3xl font-extrabold mb-2">Agende uma Apresentação Técnica</h2>
-                    <p class="text-sm text-gray-200">Prepare seu município para a transformação digital em poucos passos.</p>
-                </div>
-
-                <form id="contactForm" class="max-w-2xl mx-auto bg-white p-6 md:p-8 rounded-xl shadow-xl text-gray-900">
-                    <div id="formSuccess" class="hidden bg-green-50 border border-green-200 text-green-700 px-4 py-2.5 rounded-lg mb-4 text-center text-sm font-semibold">
-                        Demonstração solicitada com sucesso! Breve entraremos em contato.
-                    </div>
-                    <div id="formError" class="hidden bg-red-50 border border-red-200 text-red-700 px-4 py-2.5 rounded-lg mb-4 text-center text-sm font-semibold">
-                        Ocorreu um erro ao processar. Por favor, tente novamente.
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Seu Nome*</label>
-                            <input type="text" id="nome" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">E-mail Institucional*</label>
-                            <input type="email" id="email" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Telefone / WhatsApp*</label>
-                            <input type="tel" id="telefone" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Nome do Município*</label>
-                            <input type="text" id="municipio" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Seu Cargo*</label>
-                            <select id="cargo" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                                <option value="">Selecione</option>
-                                <option value="Prefeito">Prefeito(a)</option>
-                                <option value="Secretario">Secretário(a)</option>
-                                <option value="Diretor">Diretor(a)</option>
-                                <option value="Outro">Outro</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-xs font-bold text-gray-700 mb-1">População Estimada</label>
-                            <input type="number" id="populacao" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                        </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Área de Maior Prioridade*</label>
-                            <select id="prioridade" required class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm">
-                                <option value="">Selecione um módulo</option>
-                                <option value="Ponto Biometrico">Ponto Biométrico (Facial/GPS)</option>
-                                <option value="RH">RH Completo / Geração de Contratos</option>
+                            <label class="block text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-mono" for="prioridade">Área de Maior Prioridade*</label>
+                            <select id="prioridade" required class="w-full px-4 py-3.5 bg-white border border-brand-border rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/50 text-sm text-brand-text-muted transition shadow-inner appearance-none bg-[url('data:image/svg+xml;charset=UTF-8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2012%2012%22%3E%3Cpath%20fill%3D%22%2386868B%22%20d%3D%22M10.293%203.293L6%207.586%201.707%203.293A1%201%200%2000.293%204.707l5%205a1%201%200%20001.414%200l5-5a1%201%200%2010-1.414-1.414z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:12px] bg-[right_1rem_center] bg-no-repeat">
+                                <option value="">Selecione o módulo prioritário</option>
+                                <option value="Ponto">Ponto Biométrico (Facial/GPS)</option>
+                                <option value="RH">RH Completo / Contratos</option>
                                 <option value="Frota">Controle de Frota e Combustível</option>
-                                <option value="Patrimonio">Patrimônio / Almoxarifado</option>
+                                <option value="Patrimonio">Almoxarifado e Patrimônio</option>
                             </select>
                         </div>
-                        <div class="md:col-span-2">
-                            <label class="block text-xs font-bold text-gray-700 mb-1">Demandas Específicas</label>
-                            <textarea id="mensagem" rows="2" class="w-full px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-cv-orange text-sm"></textarea>
+
+                        <div>
+                            <label class="block text-[10px] uppercase tracking-widest text-brand-text-muted mb-2 font-mono" for="mensagem">Demandas Específicas (Opcional)</label>
+                            <textarea id="mensagem" rows="3" class="w-full px-4 py-3.5 bg-white border border-brand-border rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-accent/50 text-sm text-brand-text-main transition shadow-inner resize-none"></textarea>
                         </div>
-                    </div>
-                    <button type="submit" class="w-full mt-4 bg-cv-orange text-white text-sm font-bold py-3 rounded-lg hover:bg-opacity-95 transition duration-300 cta-shine">
-                        Solicitar Demonstração Técnica Agora
-                    </button>
-                </form>
+
+                        <button type="submit" class="w-full mt-4 bg-brand-dark text-white text-sm font-semibold py-4 rounded-xl hover:bg-neutral-800 transition duration-300 tracking-wider uppercase font-mono shadow-lg shadow-black/5 transform hover:-translate-y-0.5">
+                            Solicitar Agendamento Técnico Agora
+                        </button>
+                    </form>
+                </div>
             </div>
         </section>
+
     </main>
 
-    <div id="myLightbox" class="lightbox">
-        <span class="lightbox-close text-white absolute top-6 right-10 text-4xl font-bold cursor-pointer">&times;</span>
-        <img class="lightbox-content rounded-xl" id="lightboxImage">
-        <div id="lightboxCaption" class="text-center text-gray-300 mt-4 font-medium text-sm"></div>
-    </div>
-
-    <footer class="bg-gray-900 text-gray-500 py-8 border-t border-gray-800 text-xs">
-        <div class="container mx-auto px-6 text-center space-y-2">
-            <p class="text-sm font-bold text-white">Grupo CV Empreendimentos</p>
-            <p>&copy; 2025. Todos os direitos reservados. Automação Inteligente de Processos Públicos.</p>
+    <footer class="bg-white border-t border-brand-border py-12 text-xs text-brand-text-muted">
+        <div class="max-w-[1600px] mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex flex-col gap-2 items-center md:items-start">
+                <a href="#" class="font-extrabold tracking-tighter text-base text-brand-text-main flex items-center gap-1 mb-1">
+                    GESTOOR<span class="text-brand-accent font-light">360</span>
+                </a>
+                <p>&copy; 2025 Grupo CV Empreendimentos. Todos os direitos reservados.</p>
+            </div>
+            <div class="flex flex-col gap-2 items-center md:items-end font-mono">
+                <p class="text-brand-text-main font-medium">Automação Inteligente de Processos Públicos.</p>
+                <p>Em estrita conformidade com a LGPD e Órgãos de Controle.</p>
+            </div>
         </div>
     </footer>
 
-    <button id="chatFab" class="fixed bottom-6 right-6 bg-cv-dark-green text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center hover:bg-cv-medium-green focus:outline-none z-50">
-        <i class="bi bi-chat-dots text-xl"></i>
-    </button>
-
-    <div id="chatWidget" class="fixed bottom-20 right-6 w-72 md:w-80 bg-white border border-gray-200 rounded-xl shadow-2xl hidden z-50 overflow-hidden text-xs">
-        <div class="flex items-center justify-between px-4 py-2.5 bg-cv-dark-green text-white">
-            <div class="font-bold">Atendimento - Gestoor 360</div>
-            <button id="chatClose" class="text-white"><i class="bi bi-x-lg"></i></button>
-        </div>
-        <div id="chatBody" class="p-3 space-y-2.5 max-h-64 overflow-y-auto bg-gray-50">
-            <div id="prechat" class="space-y-2 bg-white p-3 rounded-lg border border-gray-100 shadow-sm">
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-0.5" for="chatName">Seu nome</label>
-                    <input id="chatName" class="w-full px-2 py-1.5 border border-gray-200 rounded-md" placeholder="Nome" />
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-500 mb-0.5" for="chatEmail">Seu e-mail</label>
-                    <input id="chatEmail" type="email" class="w-full px-2 py-1.5 border border-gray-200 rounded-md" placeholder="voce@municipio.gov.br" />
-                </div>
-                <button id="startChat" class="w-full bg-cv-orange text-white py-1.5 rounded-md font-bold">Iniciar Conversa</button>
-            </div>
-            <div id="chatMessages" class="hidden space-y-2"></div>
-        </div>
-        <div id="chatInputArea" class="border-t p-2 bg-white hidden">
-            <div class="flex space-x-2">
-                <input id="chatInput" class="flex-1 px-2 py-1.5 bg-gray-50 border border-gray-200 rounded-md focus:outline-none" placeholder="Escreva..." />
-                <button id="chatSend" class="bg-cv-orange text-white px-3 py-1.5 rounded-md font-bold">Enviar</button>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
     <script>
-        function switchTab(idx) {
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.setAttribute('aria-selected', 'false');
-                btn.querySelector('h3').classList.replace('text-cv-dark-green', 'text-gray-900');
-                btn.classList.remove('bg-emerald-50/50', 'border-cv-medium-green');
-            });
-            
-            const activeBtn = document.getElementById(`tab-btn-${idx}`);
-            activeBtn.setAttribute('aria-selected', 'true');
-            activeBtn.querySelector('h3').classList.replace('text-gray-900', 'text-cv-dark-green');
-            activeBtn.classList.add('bg-emerald-50/50', 'border-cv-medium-green');
-
-            document.querySelectorAll('.tab-content').forEach(content => content.classList.add('hidden'));
-            document.getElementById(`tab-content-${idx}`).classList.remove('hidden');
-        }
-
-        function animateCounters() {
-            document.querySelectorAll('.counter').forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const updateCount = () => {
-                    const currentValue = +counter.innerText.replace(/[^0-9.]/g, '');
-                    const increment = target / 100;
-                    if (currentValue < target) {
-                        let newValue = currentValue + increment;
-                        if (newValue > target) newValue = target;
-                        let displayValue = (target === 99.9) ? newValue.toFixed(1) : Math.ceil(newValue);
-                        counter.innerText = counter.innerText.includes('%') ? displayValue + '%' : (counter.innerText.includes('h') ? displayValue + 'h' : displayValue);
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = counter.innerText.includes('%') ? target + '%' : (counter.innerText.includes('h') ? target + 'h' : target);
-                    }
-                };
-                updateCount();
-            });
-        }
+        gsap.registerPlugin(ScrollTrigger);
 
         document.addEventListener('DOMContentLoaded', function() {
-            AOS.init({ duration: 600, once: true });
+            
+            // Fix header space
+            const header = document.querySelector('header');
+            const main = document.querySelector('header-space');
+            if(header && main) { main.style.paddingTop = header.offsetHeight + 'px'; }
 
-            if (window.VANTA) {
-                VANTA.GLOBE({
-                    el: "#vanta-hero", mouseControls: true, touchControls: true,
-                    minHeight: 200.00, minWidth: 200.00, scale: 1.00, scaleMobile: 1.00,
-                    color: 0x008B00, color2: 0x145A2D, backgroundColor: 0xf9fafb, size: 1.1
+            // 1. Animação Hero (Texto Revelado - Split-like)
+            const heroTl = gsap.timeline({defaults: { ease: "power4.out" }});
+            
+            heroTl.to(".hero-clip span", {
+                y: 0,
+                duration: 1.4,
+                stagger: 0.2
+            })
+            .to(".reveal-up", {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                stagger: 0.1
+            }, "-=1");
+
+            // 2. Revelações Genéricas ScrollTrigger
+            document.querySelectorAll('.reveal-up:not(.pt-28)').forEach((element) => {
+                gsap.to(element, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 90%",
+                        toggleActions: "play none none none"
+                    }
+                });
+            });
+
+            // 3. Revelação em Cascata (Stagger) dos Cards de Módulos
+            ScrollTrigger.batch(".reveal-stagger", {
+                start: "top 85%",
+                onEnter: batch => gsap.to(batch, {opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out"}),
+                once: true
+            });
+
+            // 4. ANIMAÇÃO DO OBJETO MOVÍVEL (Ponto Biométrico)
+            // Vinculada diretamente ao progresso da rolagem na seção
+            gsap.to("#objeto-movivel", {
+                y: 110, // Distância para descer dentro do trilho
+                ease: "none",
+                scrollTrigger: {
+                    trigger: "#ponto-container", // Inicia quando o container do ponto aparece
+                    start: "top 70%",          // Começa quando o topo do container está a 70% da tela
+                    end: "bottom 30%",          // Termina quando o fundo está a 30%
+                    scrub: 0.5,                 // Suaviza o movimento vinculando-o ao scroll
+                    // markers: true // Descomente para debugar
+                }
+            });
+
+            // 5. Animação dos Contadores Numéricos (Seção Preta)
+            const counters = document.querySelectorAll('.counter');
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const isFloat = counter.getAttribute('data-target').includes('.');
+                
+                // Objeto dummy para animar o valor
+                const obj = { value: 0 };
+                
+                gsap.to(obj, {
+                    value: target,
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: "#resultados",
+                        start: "top 70%",
+                        toggleActions: "play none none none"
+                    },
+                    onUpdate: function() {
+                        // Formatação durante a atualização
+                        if(isFloat) {
+                            counter.innerText = obj.value.toFixed(1);
+                        } else {
+                            counter.innerText = Math.ceil(obj.value);
+                        }
+                    },
+                    onComplete: function() {
+                        // Garante o valor exato no final
+                        counter.innerText = target;
+                    }
+                });
+            });
+
+
+            // 6. Fluxo de envio do formulário (Front-end apenas)
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('formSuccess');
+
+            if(form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Simulação de envio
+                    const btn = this.querySelector('button[type="submit"]');
+                    btn.innerText = "Enviando...";
+                    btn.disabled = true;
+
+                    setTimeout(() => {
+                        successMsg.classList.remove('hidden');
+                        form.reset();
+                        btn.innerText = "Solicitar Agendamento Técnico Agora";
+                        btn.disabled = false;
+                        
+                        // Scroll suave para a mensagem de sucesso
+                        successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        
+                        // Esconde a mensagem após 5 segundos
+                        setTimeout(() => successMsg.classList.add('hidden'), 6000);
+                    }, 1500);
                 });
             }
-
-            new Typed('#typed-hero', {
-                strings: ['Gestão Eficiente.', 'Administração Digital.', 'Transparência Real.'],
-                typeSpeed: 50, backSpeed: 30, backDelay: 1500, loop: true
-            });
-
-            const observer = new IntersectionObserver(entries => {
-                if (entries[0].isIntersecting) { animateCounters(); observer.disconnect(); }
-            }, { threshold: 0.3 });
-            if (document.getElementById('provasocial')) observer.observe(document.getElementById('provasocial'));
-
-            // Lightbox
-            const lightbox = document.getElementById('myLightbox');
-            const lightboxImage = document.getElementById('lightboxImage');
-            const lightboxCaption = document.getElementById('lightboxCaption');
-            document.querySelectorAll('.gallery-thumb').forEach(thumb => {
-                thumb.addEventListener('click', function() {
-                    lightbox.style.display = 'flex';
-                    lightboxImage.src = this.src;
-                    lightboxCaption.innerHTML = this.getAttribute('data-caption') || '';
-                });
-            });
-            document.querySelector('.lightbox-close').addEventListener('click', () => lightbox.style.display = 'none');
-            lightbox.addEventListener('click', (e) => { if(e.target === lightbox) lightbox.style.display = 'none'; });
-
-            // Menu Mobile Toggle
-            const menuButton = document.getElementById('menuButton');
-            const navLinks = document.getElementById('navLinks');
-            menuButton.addEventListener('click', () => navLinks.classList.toggle('hidden'));
         });
     </script>
-
-    <script>
-        const links = {
-            whatsapp: "https://api.whatsapp.com/send?phone=5586999999999",
-            documentacao: "https://docs.grupocv.com.br"
-        };
-
-        const backend = {
-            url: "/api/contact",
-            chatUrl: "/api/chat"
-        };
-
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            document.getElementById('formSuccess').classList.add('hidden');
-            document.getElementById('formError').classList.add('hidden');
-
-            const payload = {
-                municipio: document.getElementById('municipio').value.trim(),
-                nome: document.getElementById('nome').value.trim(),
-                telefone: document.getElementById('telefone').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                cargo: document.getElementById('cargo').value.trim(),
-                populacao: document.getElementById('populacao').value.trim(),
-                prioridade: document.getElementById('prioridade').value.trim(),
-                mensagem: document.getElementById('mensagem').value.trim()
-            };
-
-            try {
-                const res = await fetch(backend.url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
-                if (res.ok) {
-                    document.getElementById('formSuccess').classList.remove('hidden');
-                    this.reset();
-                } else { document.getElementById('formError').classList.remove('hidden'); }
-            } catch (err) { document.getElementById('formError').classList.remove('hidden'); }
-        });
-
-        // Chat Script integration 
-        document.addEventListener('DOMContentLoaded', function() {
-            const chatFab = document.getElementById('chatFab');
-            const chatWidget = document.getElementById('chatWidget');
-            const chatClose = document.getElementById('chatClose');
-            const prechat = document.getElementById('prechat');
-            const startChat = document.getElementById('startChat');
-            const chatMessages = document.getElementById('chatMessages');
-            const chatInputArea = document.getElementById('chatInputArea');
-            const chatInput = document.getElementById('chatInput');
-            const chatSend = document.getElementById('chatSend');
-
-            function sid() {
-                let s = localStorage.getItem('chat_session_id');
-                if (!s) { s = Math.random().toString(36).slice(2); localStorage.setItem('chat_session_id', s); }
-                return s;
-            }
-            function uname() { return localStorage.getItem('chat_user_name') || ''; }
-            function uemail() { return localStorage.
+</body>
+</html>
